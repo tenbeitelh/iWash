@@ -12,6 +12,7 @@
 hs_err_pid*
 
 # Netbeans files 
+faces-config.NavData
 nbproject/private/
 build/
 nbbuild/
