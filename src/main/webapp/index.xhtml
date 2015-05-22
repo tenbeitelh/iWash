@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pm="http://primefaces.org/mobile">     
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile">     
     <f:view renderKitId="PRIMEFACES_MOBILE" />
     <h:head>
-        <style type="text/css">
-</style>
+        <link type="text/css" rel="stylesheet"
+              href="#{request.contextPath}/css/themes/miele.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
     </h:head>
     <h:body>
-        
+
         <pm:page style="background-image:url('../Images/app_background.jpg')">
             <pm:page>
-<f:facet name="preinit">
-	 	 <link type="text/css" rel="stylesheet"
-				 href="#{request.contextPath}/css/themes/miele.css" />
-</f:facet>
- </pm:page>
+
+            </pm:page>
             <pm:header title="Header"></pm:header> 
             <pm:content>
                 <p:panel>lorem</p:panel>
                 <p:panel style="margin-top: 5px; height: 500px;">
                     <p:panelGrid columns="2" style="width: 100%">
                         <p:commandButton value="Edit" icon="ui-icon-check"/>
-    <p:commandButton value="Delete" icon="ui-icon-check" />
-        </p:panelGrid>
+                        <p:commandButton value="Delete" icon="ui-icon-check" />
+                    </p:panelGrid>
                     <p:panelGrid columns="2" style="width: 100%">
                         <p:commandButton value="Edit" icon="ui-icon-check"/>
-    <p:commandButton value="Delete" icon="ui-icon-check" />
-        </p:panelGrid>
+                        <p:commandButton value="Delete" icon="ui-icon-check" />
+                    </p:panelGrid>
                 </p:panel>
             </pm:content>
             <pm:footer title="Footer" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
