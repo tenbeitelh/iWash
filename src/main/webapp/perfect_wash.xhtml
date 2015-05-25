@@ -15,6 +15,13 @@ and open the template in the editor.
     <h:head>
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+        <script>
+            var originalPrimeFacesCw = PrimeFaces.cw;
+            PrimeFaces.cw = function (name, id, options, resource) {
+                resource = resource || name.toLowerCase();
+                originalPrimeFacesCw.apply(this, [name, id, options, resource]);
+            };
+        </script>
     </h:head>
     <h:body>
 
@@ -72,9 +79,9 @@ and open the template in the editor.
                         </p:panelGrid>
                     </p:panelGrid>
                 </p:panel>
-                <p:panel header="Letzte Washvorgänge">
+                <p:panel header="Letzte Washvorgänge" style="margin-top: 10px">
                     <div style="width: 50%; margin: 0 auto;">
-                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}" styleClass="table table-hover" rowKey="#{process.machineId}">
+                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}">
                             <p:column headerText="Maschinen Nr.:">
                                 <h:outputText value="#{process.machineId}"></h:outputText>
                             </p:column>
@@ -94,7 +101,7 @@ and open the template in the editor.
                     </div>
                 </p:panel>
             </pm:content>
-            <pm:footer title="Footer" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
+            <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
         </pm:page>
     </h:body>
 </html>
