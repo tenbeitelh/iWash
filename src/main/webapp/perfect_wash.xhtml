@@ -19,7 +19,13 @@ and open the template in the editor.
     <h:body>
 
         <pm:page style="background-image:url('../Images/app_background.jpg')">
-            <pm:header title="Perfect Wash"></pm:header> 
+            <pm:header >
+                <p:panelGrid columns="2">
+                    <p:column style="width: 20%;"><p:graphicImage url="Images/miele-logo.png" height="35" style="" /> </p:column>
+                    <p:column style="width: 80%;"><h:outputText value="Perfect Wash" style="text-align: center; margin-top: 10px; display: block; float:left; " /></p:column>
+                </p:panelGrid>
+
+            </pm:header> 
             <pm:content>
                 <p:panel header="Konfiguration">
                     <p:panelGrid columns="2" layout="grid" style="margin-right: 25px;">
@@ -67,7 +73,25 @@ and open the template in the editor.
                     </p:panelGrid>
                 </p:panel>
                 <p:panel header="Letzte Washvorgänge">
-                    
+                    <div style="width: 50%; margin: 0 auto;">
+                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}" styleClass="table table-hover" rowKey="#{process.machineId}">
+                            <p:column headerText="Maschinen Nr.:">
+                                <h:outputText value="#{process.machineId}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Startzeit">
+                                <h:outputText value="#{process.startTime}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Laufzeit">
+                                <h:outputText value="#{process.duration}"></h:outputText>
+                            </p:column>    
+                            <p:column headerText="Washprogramm">
+                                <h:outputText value="#{process.washProgram}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Reinigungsqualität">
+                                <h:outputText value="#{process.quality * 100}%"></h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
                 </p:panel>
             </pm:content>
             <pm:footer title="Footer" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>

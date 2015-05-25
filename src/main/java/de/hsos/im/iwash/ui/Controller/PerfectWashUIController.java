@@ -44,7 +44,7 @@ public class PerfectWashUIController {
     private Map<String, String> goods;
 
     private boolean usePerfectWash = true;
-    
+
     private List<WashProcess> lastWashProcesses;
 
     public PerfectWashUIController() {
@@ -66,9 +66,11 @@ public class PerfectWashUIController {
 
         goods = new HashMap<String, String>();
         goods.put("Becher", "Becher");
+        
+        createLastWashProcesses();
     }
-    
-    public void getKastWashProcesses(){
+
+    public void createLastWashProcesses() {
         this.lastWashProcesses = new ArrayList<WashProcess>();
         WashProcess temp = new WashProcess("MachineId1", new Date(1999, 12, 10, 12, 12, 12), "1h", "Standard Modus", 0.97);
         this.lastWashProcesses.add(temp);
@@ -77,7 +79,7 @@ public class PerfectWashUIController {
         temp = new WashProcess("MachineId3", new Date(1999, 12, 10, 18, 12, 12), "1,5h", "Erweiterter Modus", 0.70);
         this.lastWashProcesses.add(temp);
     }
-    
+
     public String getModus() {
         return modus;
     }
@@ -180,6 +182,14 @@ public class PerfectWashUIController {
 
     public void setUsePerfectWash(boolean usePerfectWash) {
         this.usePerfectWash = usePerfectWash;
+    }
+
+    public List<WashProcess> getLastWashProcesses() {
+        return lastWashProcesses;
+    }
+
+    public void setLastWashProcesses(List<WashProcess> lastWashProcesses) {
+        this.lastWashProcesses = lastWashProcesses;
     }
 
 }
