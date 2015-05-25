@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:pe="http://primefaces.org/ui/extensions">     
+    <f:view renderKitId="PRIMEFACES_MOBILE" />
+    <h:head>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+    </h:head>
+    <h:body>
+
+        <pm:page style="background-image:url('../Images/app_background.jpg')">
+            <pm:header title="Perfect Wash"></pm:header> 
+            <pm:content>
+                <p:panel header="Konfiguration">
+                    <p:panelGrid columns="2" layout="grid" style="margin-right: 25px;">
+                        <p:panelGrid columns="2" layout="grid">
+                            <h:outputLabel for="modus" value="Bevorzugter Washmodus:"></h:outputLabel>
+                            <p:selectOneMenu id="modus" value="#{perfectWashUIController.modus}" style="width: 100px;">
+                                <f:selectItems value="#{perfectWashUIController.modi}" />
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="temperature" value="Wasch-Temperatur:"></h:outputLabel>
+                            <p:inputText id="temperature" value="#{perfectWashUIController.temperature}" style="width: 100px;"></p:inputText>
+
+                            <h:outputLabel for="duration" value="Maximale Reinigungsdauer:"></h:outputLabel>
+                            <pe:timePicker id="duration" value="#{perfectWashUIController.duration}" widgetVar="duration"  
+                                           style="width: 100px;"/>    
+
+                            <h:outputLabel for="quantity" value="Wasch-Temperatur:"></h:outputLabel>
+                            <p:inputText id="quantity" value="#{perfectWashUIController.quantity}"></p:inputText>
+
+                            <p:selectBooleanCheckbox value="#{perfectWashUIController.usePerfectWash}" />
+                            <h:outputText value="Perfect Wash anwenden " />
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" layout="grid" style="margin-left: 25px;">
+                            <h:outputLabel for="pollutionVariety" value="Verschmutzungsart:"></h:outputLabel>
+                            <p:selectOneMenu id="pollutionVariety" value="#{perfectWashUIController.pollutionVariety}" style="width: 100px;">
+                                <f:selectItems value="#{perfectWashUIController.pollutionVarieties}" />
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="pollutionDegree" value="Verschmutzungsgrad:"></h:outputLabel>
+                            <p:selectOneMenu id="pollutionDegree" value="#{perfectWashUIController.pollutionDegree}" style="width: 100px;">
+                                <f:selectItems value="#{perfectWashUIController.pollutionDegrees}" />
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="startTime" value="Start-Zeitpunkt:"></h:outputLabel>
+                            <pe:timePicker id="startTime" value="#{perfectWashUIController.startTime}" widgetVar="startTime"  
+                                           style="width: 100px;"/>    
+
+                            <h:outputLabel for="good" value="Art des Spülguts:"></h:outputLabel>
+                            <p:selectOneMenu id="good" value="#{perfectWashUIController.good}" style="width: 100px;">
+                                <f:selectItems value="#{perfectWashUIController.goods}" />
+                            </p:selectOneMenu>
+
+
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </p:panel>
+                <p:panel header="Letzte Washvorgänge">
+                    
+                </p:panel>
+            </pm:content>
+            <pm:footer title="Footer" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
+        </pm:page>
+    </h:body>
+</html>
