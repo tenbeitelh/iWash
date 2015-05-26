@@ -7,12 +7,16 @@ package de.hsos.im.iwash.model;
 
 
 import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 
 /**
  *
  * @author H. Tenbeitel
  */
+@ManagedBean
+@ViewScoped
 public class WashProcess {
     private String machineId;
     private Date startTime;

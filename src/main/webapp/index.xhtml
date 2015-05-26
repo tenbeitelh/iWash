@@ -4,33 +4,83 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pm="http://primefaces.org/mobile">     
-    <f:view renderKitId="PRIMEFACES_MOBILE" />
+    <f:view xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pm="http://primefaces.org/mobile"
+    contentType="text/html"
+    renderKitId="PRIMEFACES_MOBILE"
+    xmlns:h="http://java.sun.com/jsf/html"/>
     <h:head>
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+        <script>
+            var originalPrimeFacesCw = PrimeFaces.cw;
+            PrimeFaces.cw = function (name, id, options, resource) {
+                resource = resource || name.toLowerCase();
+                originalPrimeFacesCw.apply(this, [name, id, options, resource]);
+            };
+        </script>
     </h:head>
     <h:body>
-
         <pm:page style="background-image:url('../Images/app_background.jpg')">
-            <pm:page>
-
-            </pm:page>
-            <pm:header title="Header"></pm:header> 
+           <f:facet name="preinit">
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
+    </f:facet>       
+ <h:form id="form">
+            <pm:header> 
+                <p:panelGrid columns="2" style="width: 100%">
+                    <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" style="height: 30px; width: 110px" />
+                    <h:outputText value="iWash" style="font-size: 25px"/>
+                </p:panelGrid>
+                </pm:header> 
             <pm:content>
-                <p:panel>lorem</p:panel>
-                <p:panel style="margin-top: 5px; height: 500px;">
+                <div style="height: 50%">
+                <p:panel header="Dashboard">
+                <p:panelGrid columns="2" style="width: 100%">
+                    <p:column style="width: 90%"><p:chart type="bar" model="#{chartView.barModel}" style="height:150px;"/></p:column>        
+                    <p:column style="width: 90%"><p:carousel numVisible="1" itemStyle="height:200px;width:600px;" effect="easeInStrong" headerText="Tabs" style="margin-bottom:0">
+        <p:tab title="Godfather Part I">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                <h:outputText
+                    value="The story begins as Don Vito Corleone..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Godfather Part II">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                <h:outputText value="Francis Ford Coppola's..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Godfather Part III">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="After a break of more than 15 years..." />
+            </h:panelGrid>
+        </p:tab>
+    </p:carousel>
+        </p:column>
+               </p:panelGrid>
                     <p:panelGrid columns="2" style="width: 100%">
-                        <p:commandButton value="Edit" icon="ui-icon-check"/>
-                        <p:commandButton value="Delete" icon="ui-icon-check" />
+                    <p:column style="width: 90%"><p:chart type="bar" model="#{chartView.barModel}" style="height:180px;"/></p:column>
+                    <p:column style="width: 90%"><p:chart type="pie" model="#{chartView.pieModel1}" style="height:180px"/></p:column>
+               </p:panelGrid>
+                </p:panel>
+                </div>
+                <p:panel style="margin-top: 1%">
+                    <p:panelGrid columns="2" style="width: 100%">
+                        <p:column style="width: 85%"><p:commandButton value="Edit" icon="ui-icon-check" style="height: 105px ; width: 99%"/></p:column>
+                        <p:column style="width: 85%; margin-left: 5%"><p:commandButton value="Delete" icon="ui-icon-check" style="height: 105px; margin-left: 1%; width: 99%"/></p:column>
                     </p:panelGrid>
-                    <p:panelGrid columns="2" style="width: 100%">
-                        <p:commandButton value="Edit" icon="ui-icon-check" styleClass="redButton"/>
-                        <p:commandButton value="Delete" icon="ui-icon-check" />
+                    <p:panelGrid columns="2" style="width: 100%; margin-top: 0.1%">
+                        <p:column style="width: 85%"><p:commandButton value="Edit" icon="ui-icon-check" style="height: 105px ; width: 99%"/></p:column>
+                        <p:column style="width: 85%; "><p:commandButton  value="Delete" icon="ui-icon-check" style="height: 105px; margin-left: 1%; width: 99%"/></p:column>
                     </p:panelGrid>
                 </p:panel>
             </pm:content>
-            <pm:footer title="Footer" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
+           </h:form>
         </pm:page>
     </h:body>
 </html>
