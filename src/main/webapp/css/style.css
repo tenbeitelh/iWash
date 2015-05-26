@@ -25,20 +25,24 @@ and open the template in the editor.
     background: url("#{resource['Images:telephone.png']}");    
 }
 
-.single-item{
-    background-color: black;
-}
-
-.slick-prev:before, .slick-next:before { 
-    color:red !important;
+.ui-timepicker-table{
+    width: 250px;
 }
 
 .ui-timepicker-hours{
-    background-color: : grey;
+    background-color: grey;
 }
 
-.ui-timepicker{
+.ui-timepicker-minutes{
     background-color: grey;
+}
+
+.ui-timepicker-title{
+    color: white;
+}
+
+.ui-state-default{
+    color: white;
 }
 
 .carousel-inner > .item > img,
