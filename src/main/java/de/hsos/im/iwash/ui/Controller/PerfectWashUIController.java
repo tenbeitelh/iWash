@@ -8,6 +8,7 @@ package de.hsos.im.iwash.ui.Controller;
 import de.hsos.im.iwash.conf.PerfectWashConfiguration;
 import de.hsos.im.iwash.model.WashProcess;
 import de.hsos.im.iwash.utils.ConfigurationUtils;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,6 +91,23 @@ public class PerfectWashUIController {
             Logger.getLogger(PerfectWashUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRealPath(""));
+    }
+    
+    public void loadConfiguration(){
+        try {
+            PerfectWashConfiguration conf = ConfigurationUtils.loadPerfectWashConfiguration("perfect_wash_conf.conf");
+            this.modus = conf.getModus();
+            this.temperature = conf.getTemperature();
+            this.quantity = conf.getQunatity();
+            this.startTime = conf.getStartTime();
+            this.pollutionVariety = conf.getPollutionVariety();
+            this.pollutionDegree = conf.getPollutionDegree();
+            this.good = conf.getGood();
+            this.duration = new Date(conf.getDuration());
+            this.usePerfectWash = conf.isUsePerfectWash();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PerfectWashUIController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void createLastWashProcesses() {
