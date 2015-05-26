@@ -15,3 +15,7 @@ and open the template in the editor.
 .redButton{
     background-color: #fe0000;
 }
+
+.telephoneButton{
+    background-image: url('../Images/telephone.png');
+}

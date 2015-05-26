@@ -35,7 +35,19 @@ and open the template in the editor.
             </pm:header> 
             <pm:content>
                 <p:panel styleClass="panel">
-                    Ansprechpartner:
+                    <p:panelGrid columns="2">
+                        <p>Ansprechpartner:</p>
+                        <p:column>
+                            Intern: 
+                            <p:commandLink>
+                                <h:graphicImage name="Images/telephone.jpg" />
+                            </p:commandLink>
+                        </p:column>
+
+                    </p:panelGrid>
+                    <p:panelGrid columns="2">
+                        Ansprechpartner:
+                    </p:panelGrid>
                 </p:panel>
                 <p:panel styleClass="panel">
                     Fehlerbericht:
