@@ -13,6 +13,13 @@ and open the template in the editor.
       xmlns:pe="http://primefaces.org/ui/extensions">     
     <f:view renderKitId="PRIMEFACES_MOBILE" />
     <h:head>
+        <script>
+            var originalPrimeFacesCw = PrimeFaces.cw;
+            PrimeFaces.cw = function (name, id, options, resource) {
+                resource = resource || name.toLowerCase();
+                originalPrimeFacesCw.apply(this, [name, id, options, resource]);
+            };
+        </script>
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css" />
@@ -21,13 +28,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-        <script>
-            var originalPrimeFacesCw = PrimeFaces.cw;
-            PrimeFaces.cw = function (name, id, options, resource) {
-                resource = resource || name.toLowerCase();
-                originalPrimeFacesCw.apply(this, [name, id, options, resource]);
-            };
-        </script>
+
     </h:head>
     <h:body>
 
@@ -40,7 +41,7 @@ and open the template in the editor.
 
             </pm:header> 
             <pm:content>
-                <p:panel header="Konfiguration" styleClass="panel">
+                <p:panel header="Konfiguration" >
                     <p:panelGrid columns="2" layout="grid" style="margin-right: 25px;">
                         <p:panelGrid columns="2" layout="grid">
                             <h:outputLabel for="modus" value="Bevorzugter Washmodus:"></h:outputLabel>
@@ -58,8 +59,8 @@ and open the template in the editor.
                             <h:outputLabel for="quantity" value="Wasch-Temperatur:"></h:outputLabel>
                             <p:inputText id="quantity" value="#{perfectWashUIController.quantity}"></p:inputText>
 
-                            <p:selectBooleanCheckbox value="#{perfectWashUIController.usePerfectWash}" />
-                            <h:outputText value="Perfect Wash anwenden " />
+                            <p:selectBooleanCheckbox id="usePerfectWash" value="#{perfectWashUIController.usePerfectWash}" />
+                            <h:outputLabel for="usePerfectWash" value="Perfect Wash anwenden " />
                         </p:panelGrid>
                         <p:panelGrid columns="2" layout="grid" style="margin-left: 25px;">
                             <h:outputLabel for="pollutionVariety" value="Verschmutzungsart:"></h:outputLabel>
@@ -80,13 +81,14 @@ and open the template in the editor.
                             <p:selectOneMenu id="good" value="#{perfectWashUIController.good}" style="width: 100px;">
                                 <f:selectItems value="#{perfectWashUIController.goods}" />
                             </p:selectOneMenu>
+                            
                         </p:panelGrid>
                     </p:panelGrid>
                 </p:panel>
 
                 <p:panel header="Letzte Washvorgänge" styleClass="panel">
                     <div style="width: 50%; margin: 0 auto;">
-                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}">
+                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}"  tableStyleClass="table table-striped">
                             <p:column headerText="Maschinen Nr.:">
                                 <h:outputText value="#{process.machineId}"></h:outputText>
                             </p:column>

@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 .panel{
-    margin: 1%;
+    margin-top: 1%;
 }
 
 .redButton{
@@ -41,7 +41,7 @@ and open the template in the editor.
     color: white;
 }
 
-.ui-state-default{
+a.ui-state-default{
     color: white;
 }
 
@@ -50,4 +50,9 @@ and open the template in the editor.
     width: 70%;
     margin: auto;
     float: none;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    border-style: none;
+    text-align: center;
 }
