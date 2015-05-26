@@ -14,6 +14,7 @@ and open the template in the editor.
     <h:head>
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
         <script>
             var originalPrimeFacesCw = PrimeFaces.cw;
             PrimeFaces.cw = function (name, id, options, resource) {
@@ -33,16 +34,16 @@ and open the template in the editor.
 
             </pm:header> 
             <pm:content>
-                <p:panel>
+                <p:panel styleClass="panel">
                     Ansprechpartner:
                 </p:panel>
-                <p:panel>
+                <p:panel styleClass="panel">
                     Fehlerbericht:
                 </p:panel>
-                <p:panel>
+                <p:panel styleClass="panel">
                     Fernzugriff:
                 </p:panel>
-                <p:panel>
+                <p:panel styleClass="panel">
                     Geräteinformationen:
                 </p:panel>
             </pm:content>
