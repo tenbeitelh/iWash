@@ -37,13 +37,16 @@ and open the template in the editor.
                 <p:panel styleClass="panel">
                     <p:panelGrid columns="2">
                         <p>Ansprechpartner:</p>
-                        <p:column>
-                            Intern: 
-                            <p:commandLink>
-                                <h:graphicImage name="Images/telephone.jpg" />
-                            </p:commandLink>
-                        </p:column>
+                        <p:column style="float: left;">
 
+                            <div style="text-align: center">Intern:</div>
+                            <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
+                            <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
+
+
+
+                        </p:column>
+                        <p:graphicImage styleClass="telephoneButton"></p:graphicImage>
                     </p:panelGrid>
                     <p:panelGrid columns="2">
                         Ansprechpartner:
