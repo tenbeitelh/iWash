@@ -14,7 +14,12 @@ and open the template in the editor.
     <f:view renderKitId="PRIMEFACES_MOBILE" />
     <h:head>
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
-        <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+
+        <!-- slick -->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick-theme.css"/>
+        <!-- slick -->
         <script>
             var originalPrimeFacesCw = PrimeFaces.cw;
             PrimeFaces.cw = function (name, id, options, resource) {
@@ -75,6 +80,14 @@ and open the template in the editor.
                                 <f:selectItems value="#{perfectWashUIController.goods}" />
                             </p:selectOneMenu>
 
+                            <div class="slider single-item">
+                                <div><h3>1</h3></div>
+                                <div><h3>2</h3></div>
+                                <div><h3>3</h3></div>
+                                <div><h3>4</h3></div>
+                                <div><h3>5</h3></div>
+                            </div>
+
 
                         </p:panelGrid>
                     </p:panelGrid>
@@ -103,5 +116,8 @@ and open the template in the editor.
             </pm:content>
             <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
         </pm:page>
+
+        <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
+        <script type="text/javascript" src="#{request.contextPath}/js/script.js"></script>
     </h:body>
 </html>
