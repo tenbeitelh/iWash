@@ -5,14 +5,20 @@
  */
 package de.hsos.im.iwash.ui.Controller;
 
+import de.hsos.im.iwash.conf.PerfectWashConfiguration;
 import de.hsos.im.iwash.model.WashProcess;
+import de.hsos.im.iwash.utils.ConfigurationUtils;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -52,6 +58,10 @@ public class PerfectWashUIController {
 
     @PostConstruct
     public void init() {
+        
+        duration = new Date();
+        startTime = new Date();
+        
         modi = new HashMap<String, String>();
         modi.put("TestModus", "TestModus");
         modi.put("Standard Modus", "Standard Modus");
@@ -64,10 +74,22 @@ public class PerfectWashUIController {
         pollutionDegrees.put("Mittel", "Mittel");
         pollutionDegrees.put("Gering", "Gering");
 
-        goods = new HashMap<String, String>();
+        goods = new HashMap<>();
         goods.put("Becher", "Becher");
-        
+
         createLastWashProcesses();
+        onPageLeft();
+    }
+
+    public void onPageLeft() {
+        PerfectWashConfiguration conf = new PerfectWashConfiguration(modus, temperature, duration.toString(), quantity, pollutionVariety, pollutionDegree, startTime, good, usePerfectWash);
+        
+        try {
+            ConfigurationUtils.saveConfiguration("perfect_wash_conf.conf", conf);
+        } catch (IOException ex) {
+            Logger.getLogger(PerfectWashUIController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRealPath(""));
     }
 
     public void createLastWashProcesses() {
