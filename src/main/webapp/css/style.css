@@ -32,3 +32,18 @@ and open the template in the editor.
 .slick-prev:before, .slick-next:before { 
     color:red !important;
 }
+
+.ui-timepicker-hours{
+    background-color: : grey;
+}
+
+.ui-timepicker{
+    background-color: grey;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+    float: none;
+}
