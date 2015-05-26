@@ -24,3 +24,11 @@ and open the template in the editor.
 .telephoneButton{
     background: url("#{resource['Images:telephone.png']}");    
 }
+
+.single-item{
+    background-color: black;
+}
+
+.slick-prev:before, .slick-next:before { 
+    color:red !important;
+}
