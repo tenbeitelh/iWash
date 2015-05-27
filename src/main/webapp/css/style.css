@@ -56,3 +56,8 @@ a.ui-state-default{
     border-style: none;
     text-align: center;
 }
+
+.inner {
+    width: 50%;
+    margin: 0 auto;
+}

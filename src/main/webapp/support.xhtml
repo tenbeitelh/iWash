@@ -15,6 +15,8 @@ and open the template in the editor.
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script>
             var originalPrimeFacesCw = PrimeFaces.cw;
             PrimeFaces.cw = function (name, id, options, resource) {
@@ -34,32 +36,66 @@ and open the template in the editor.
 
             </pm:header> 
             <pm:content>
-                <p:panel styleClass="panel">
+                <p:panel styleClass="panel" header="Ansprechpartner:">
                     <p:panelGrid columns="2">
-                        <p>Ansprechpartner:</p>
+
                         <p:column style="float: left;">
-
-                            <div style="text-align: center">Intern:</div>
-                            <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
-                            <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
-
-
-
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p:panelGrid columns="2">
+                                        <p:column style="widht: 40%"><div style="text-align: center">Intern:</div></p:column>
+                                        <p:column style="widht: 60%">
+                                            <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
+                                            <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
+                                        </p:column>
+                                    </p:panelGrid>
+                                </div>
+                            </div>
                         </p:column>
-                        <p:graphicImage styleClass="telephoneButton"></p:graphicImage>
+
+
+                        <p:column style="float: left;">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p:panelGrid columns="2">
+                                        <p:column style="widht: 40%"><div style="text-align: center">Miele:</div></p:column>
+                                        <p:column style="widht: 60%">
+                                            <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
+                                            <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
+                                        </p:column>
+                                    </p:panelGrid>
+                                </div>
+                            </div>
+                        </p:column>
                     </p:panelGrid>
+                </p:panel>
+                <p:panel styleClass="panel" header="Fehlerbericht:">
+
+                    <div  style="margin-left: auto; margin-right: auto">
+                        <div class="inner"  >
+                            <h:commandButton image="/Images/info.png" styleClass="imageButton"></h:commandButton>
+                            <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
+                            <h:commandButton image="/Images/print.png" styleClass="imageButton"></h:commandButton>
+                        </div>
+                    </div>
+                </p:panel>
+                <p:panel styleClass="panel" header="Fernzugriff:">
+                    <div  style="margin-left: auto; margin-right: auto">
+                        <div class="inner"  >
+                            <h:commandButton image="/Images/info.png" styleClass="imageButton"></h:commandButton>
+                            <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
+                            <h:commandButton image="/Images/print.png" styleClass="imageButton"></h:commandButton>
+                        </div>
+                    </div>
+                </p:panel>
+                <p:panel styleClass="panel" header="Geräteinformationen:">
                     <p:panelGrid columns="2">
-                        Ansprechpartner:
+                        <p:outputLabel value="Gerätetyp:"></p:outputLabel>
+                        <p:outputLabel value="Typbezeichnung"></p:outputLabel>
+                        
+                        <p:outputLabel value="Garantiegültigkeit:"></p:outputLabel>
+                        <p:outputLabel value="31.12.2016"></p:outputLabel>
                     </p:panelGrid>
-                </p:panel>
-                <p:panel styleClass="panel">
-                    Fehlerbericht:
-                </p:panel>
-                <p:panel styleClass="panel">
-                    Fernzugriff:
-                </p:panel>
-                <p:panel styleClass="panel">
-                    Geräteinformationen:
                 </p:panel>
             </pm:content>
             <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
