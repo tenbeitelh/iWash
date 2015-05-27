@@ -71,9 +71,4 @@ public class WashProcess {
     public void setQuality(double quality) {
         this.quality = quality;
     }
-    
-    
-    
-    
-    
 }

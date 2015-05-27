@@ -11,6 +11,7 @@ import de.hsos.im.iwash.model.WashProcess;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
  
@@ -30,6 +31,7 @@ public class ChartView implements Serializable {
     private BarChartModel barModel;
     private HorizontalBarChartModel horizontalBarModel;
     private PieChartModel pieModel1;
+    private PieChartModel pieModel2;
     
     private List<WashProcess> washerlist;
     private WashProcess selectedWasher;
@@ -42,6 +44,16 @@ public class ChartView implements Serializable {
         createPieModels();
         washerlist = service.createWashProcess(4);
     }
+
+    public PieChartModel getPieModel2() {
+        return pieModel2;
+    }
+
+    public void setPieModel2(PieChartModel pieModel2) {
+        this.pieModel2 = pieModel2;
+    }
+    
+    
     
     public void setService(WasherService service) {
         this.service = service;
@@ -143,17 +155,33 @@ public class ChartView implements Serializable {
     
     private void createPieModels() {
         createPieModel1();
+        createPieModel2();
     }
  
     private void createPieModel1() {
         pieModel1 = new PieChartModel();
+        
+        Random rand = new Random();
+        int  n = rand.nextInt(100) + 0;
+
+        int  maschine = rand.nextInt(5) + 1;
          
-        pieModel1.set("Brand 1", 540);
-        pieModel1.set("Brand 2", 325);
-        pieModel1.set("Brand 3", 702);
-        pieModel1.set("Brand 4", 421);
+        pieModel1.set("Restwaschzeit", 100-n);
+        pieModel1.set("Waschzeit", n);
+        pieModel1.setTitle("Laufzeit von Waschmaschine " +maschine);
+        pieModel1.setLegendPosition("e");
+    }
+    private void createPieModel2() {
+        pieModel2 = new PieChartModel();
+        
+        Random rand = new Random();
+        int  n = rand.nextInt(100) + 0;
+
+        int  maschine = rand.nextInt(5) + 1;
          
-        pieModel1.setTitle("Simple Pie");
-        pieModel1.setLegendPosition("w");
+        pieModel2.set("Restwaschzeit", 100-n);
+        pieModel2.set("Waschzeit", n);
+        pieModel2.setTitle("Laufzeit von Waschmaschine " +maschine);
+        pieModel2.setLegendPosition("e");
     }
 }
