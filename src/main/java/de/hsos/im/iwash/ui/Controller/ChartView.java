@@ -76,7 +76,7 @@ public class ChartView implements Serializable {
         supplier.add("Bosch");
         lineModel2 = initCategoryModel();
         lineModel2.setTitle("Verkaufspreisentwicklung Reinigungsmittel "+supplier.get(c));
-        lineModel2.setLegendPosition("n");
+        lineModel2.setLegendPosition("e");
         lineModel2.setShowPointLabels(true);
         lineModel2.getAxes().put(AxisType.X, new CategoryAxis("2015"));
         Axis yAxis = lineModel2.getAxis(AxisType.Y);
