@@ -116,8 +116,6 @@ public class PerfectWashUIController {
         this.lastWashProcesses.add(temp);
         temp = new WashProcess("MachineId2", new Date(1999, 12, 10, 18, 12, 12), "1,5h", "Erweiterter Modus", 0.90);
         this.lastWashProcesses.add(temp);
-        temp = new WashProcess("MachineId3", new Date(1999, 12, 10, 18, 12, 12), "1,5h", "Erweiterter Modus", 0.70);
-        this.lastWashProcesses.add(temp);
     }
 
     public String getModus() {

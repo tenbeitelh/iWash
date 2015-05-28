@@ -78,11 +78,11 @@ public class ChartView implements Serializable {
         lineModel2.setTitle("Verkaufspreisentwicklung Reinigungsmittel "+supplier.get(c));
         lineModel2.setLegendPosition("n");
         lineModel2.setShowPointLabels(true);
-        lineModel2.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+        lineModel2.getAxes().put(AxisType.X, new CategoryAxis("2015"));
         Axis yAxis = lineModel2.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
+        yAxis.setLabel("Preis in €");
         yAxis.setMin(0);
-        yAxis.setMax(200);
+        yAxis.setMax(80);
     }
      private LineChartModel initCategoryModel() {
         LineChartModel model = new LineChartModel();
@@ -142,16 +142,15 @@ public class ChartView implements Serializable {
     private void createBarModel() {
         barModel = initBarModel();
          
-        barModel.setTitle("Bar Chart");
+        barModel.setTitle("Aktuell ausgeführte Programme in den Maschinen");
         barModel.setLegendPosition("ne");
          
         Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Gender");
          
         Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
+        yAxis.setLabel("Anzahl Maschinen");
         yAxis.setMin(0);
-        yAxis.setMax(200);
+        yAxis.setMax(8);
     }
     
     private HorizontalBarChartModel createHorizontalBarModel() { 
@@ -228,16 +227,32 @@ public class ChartView implements Serializable {
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
  
-        ChartSeries boys = new ChartSeries();
-        boys.setLabel("Boys");
-        boys.set("2004", 120);
+        ChartSeries pA = new ChartSeries();
+        pA.setLabel("PerfectWash");
+        pA.set("Programme", 5);
 
-        ChartSeries girls = new ChartSeries();
-        girls.setLabel("Girls");
-        girls.set("2004", 52);
+        ChartSeries pB = new ChartSeries();
+        pB.setLabel("StandartA");
+        pB.set("Programme", 1);
+        
+        
+        ChartSeries pC = new ChartSeries();
+        pC.setLabel("Ultimate");
+        pC.set("Programme", 3);
+        
+        ChartSeries pD = new ChartSeries();
+        pD.setLabel("Clean");
+        pD.set("Programme", 0);
+        
+        ChartSeries pE = new ChartSeries();
+        pE.setLabel("UltraWash");
+        pE.set("Programme", 1);
  
-        model.addSeries(boys);
-        model.addSeries(girls);
+        model.addSeries(pA);
+        model.addSeries(pB);
+        model.addSeries(pC);
+        model.addSeries(pD);
+        model.addSeries(pE);
          
         return model;
     }

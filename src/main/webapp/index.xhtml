@@ -50,19 +50,43 @@
                 <p:poll interval="3" update="votes" />
                 <p:panel header="Dashboard" id="votes">
                 <p:panelGrid columns="2" style="width: 100%">
-                    <p:column style="width: 100%; margin-left: 10%">
+                    <p:column style="width: 100%; margin-left: 10%;">
                         <h:form>
-                        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:200px"/>
+                        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
                         </h:form>
                         
-                    </p:column>        
-                    <p:column style="width: 80%; margin-left: 40%">
-                        <p:chart type="line" model="#{chartView.lineModel2}" style="height:200px;"/>
-        </p:column>
+                    </p:column> 
+                    <p:column style="width: 80%">
+                            <div style="width: 90%; margin: 0 auto;">
+                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}"  tableStyleClass="table table-striped">
+                            <p:column headerText="Maschinen Nr.:">
+                                <h:outputText value="#{process.machineId}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Startzeit">
+                                <h:outputText value="#{process.startTime.hours}"></h:outputText>
+                                :
+                                <h:outputText value="#{process.startTime.minutes}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Laufzeit">
+                                <h:outputText value="#{process.duration}"></h:outputText>
+                            </p:column>    
+                            <p:column headerText="Washprogramm">
+                                <h:outputText value="#{process.washProgram}"></h:outputText>
+                            </p:column>
+                            <p:column headerText="Reinigungsqualität">
+                                <h:outputText value="#{process.quality * 100}%"></h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                            
+                        </p:column>
+                    
                </p:panelGrid>
                     <p:panelGrid columns="2" style="width: 100%">
-                    <p:column style="width: 100%"><p:chart type="pie" model="#{chartView.pieModel2}" style="height:180px"/></p:column>
-               <p:column style="width: 100%"><p:chart type="pie" model="#{chartView.pieModel1}" style="height:180px"/></p:column>
+                        <p:column style="width: 80%"><p:chart type="bar" model="#{chartView.barModel}" style="height:160px"/></p:column>
+                        <p:column style="width: 80%; margin-left: 40%; margin-top: 2%">
+                        <p:chart type="line" model="#{chartView.lineModel2}" style="height:180px;"/>
+        </p:column>
                </p:panelGrid>
                 </p:panel>
                 <p:panel style="margin-top: 1%">
