@@ -1,23 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pm="http://primefaces.org/mobile"
-      xmlns:pe="http://primefaces.org/ui/extensions">     
-    <f:view renderKitId="PRIMEFACES_MOBILE" />
+      xmlns:pm="http://primefaces.org/mobile">     
+    <f:view xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pm="http://primefaces.org/mobile"
+    contentType="text/html"
+    renderKitId="PRIMEFACES_MOBILE"
+    xmlns:h="http://java.sun.com/jsf/html"/>
     <h:head>
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
-        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
-        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css" />
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
         <script>
             var originalPrimeFacesCw = PrimeFaces.cw;
             PrimeFaces.cw = function (name, id, options, resource) {
@@ -25,91 +22,61 @@ and open the template in the editor.
                 originalPrimeFacesCw.apply(this, [name, id, options, resource]);
             };
         </script>
-    </h:head>
+        
+        <title>Bootstrap Example</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  </style>
+</h:head>
     <h:body>
-
-        <pm:page style="background-image:url('../Images/app_background.jpg')">
+        <pm:page id="main" style="background-image:url('../Images/app_background.jpg')">
+           <f:facet name="preinit">
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
+    </f:facet>       
+ <h:form id="form">
             <pm:header> 
-                    <p:panelGrid columns="2" style="width: 100%">
-                        <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" style="height: 30px; width: 110px" />
-                        <h:outputText value="iWash" style="font-size: 25px"/>
-                    </p:panelGrid>
-                </pm:header>  
+                <p:panelGrid columns="2" style="width: 100%">
+                    <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" style="height: 30px; width: 110px" />
+                    <h:outputText value="iWash" style="font-size: 25px"/>
+                </p:panelGrid>
+                </pm:header> 
             <pm:content>
-                <p:panel header="Dashboard" styleClass="panel">
+                <p:poll interval="3" update="votes" />
+                <p:panel header="Dashboard" id="votes">
+                <p:panelGrid columns="2" style="width: 100%">
+                    <p:column style="width: 100%; margin-left: 10%">
+                        <h:form>
+                        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:200px"/>
+                        </h:form>
+                        
+                    </p:column>        
+                    <p:column style="width: 80%; margin-left: 40%">
+                        <p:chart type="line" model="#{chartView.lineModel2}" style="height:200px;"/>
+        </p:column>
+               </p:panelGrid>
                     <p:panelGrid columns="2" style="width: 100%">
-                        <p:column><p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/></p:column>
-                         <p:column><p:panel header="Bootstrap">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="3" class="active"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-
-                            <div class="item active">
-                                <p:chart type="pie" model="#{chartView.pieModel1}" style="width:200px;height:150px; margin-left: 30%" />
-                            </div>
-
-                            <div class="item">
-                                 <p:chart type="pie" model="#{chartView.pieModel2}" style="width:200px;height:150px;"/>
-                            </div>
-
-                            <div class="item">
-                                <p:chart type="pie" model="#{chartView.pieModel2}" style="width:200px;height:150px; margin-left: 30%"/>
-                                doifjspoadjpaosjdks
-                            </div>
-
-                            <div class="item">
-
-                                <div class="carousel-caption">
-                                    <h3>Flowers</h3>
-                                    <p>Beatiful flowers in Kolymbari, Crete.</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-
+                    <p:column style="width: 100%"><p:chart type="pie" model="#{chartView.pieModel2}" style="height:180px"/></p:column>
+               <p:column style="width: 100%"><p:chart type="pie" model="#{chartView.pieModel1}" style="height:180px"/></p:column>
+               </p:panelGrid>
                 </p:panel>
-                         </p:column>
-                    </p:panelGrid>
-                            <p:panelGrid columns="2" style="width: 100%">
-                                <p:column>isfdghjsdpifj</p:column>
-                                 <p:column>isfdghjsdpifj</p:column>
-                            </p:panelGrid>
-                </p:panel>
-
-               
-
                 <p:panel style="margin-top: 1%">
-                        <p:panelGrid columns="2" style="width: 100%">
-                            <p:column style="width: 85%"><p:commandButton value="Edit" icon="ui-icon-check" style="height: 105px ; width: 99%"/></p:column>
-                            <p:column style="width: 85%; margin-left: 5%"><p:commandButton value="Delete" icon="ui-icon-check" style="height: 105px; margin-left: 1%; width: 99%"/></p:column>
-                        </p:panelGrid>
-                        <p:panelGrid columns="2" style="width: 100%; margin-top: 0.1%">
-                            <p:column style="width: 85%"><p:commandButton value="Edit" icon="ui-icon-check" style="height: 105px ; width: 99%"/></p:column>
-                            <p:column style="width: 85%; "><p:commandButton  value="Delete" icon="ui-icon-check" style="height: 105px; margin-left: 1%; width: 99%"/></p:column>
-                        </p:panelGrid>
-                    </p:panel>
+                    <p:panelGrid columns="2" style="width: 100%">
+                        <p:column style="width: 85%"><p:commandButton value="Edit" icon="ui-icon-check" style="height: 105px ; width: 99%"/></p:column>
+                        <p:column style="width: 85%; margin-left: 5%"><p:commandButton value="Delete" icon="ui-icon-check" style="height: 105px; margin-left: 1%; width: 99%"/></p:column>
+                    </p:panelGrid>
+                    <p:panelGrid columns="2" style="width: 100%; margin-top: 0.1%">
+                        <p:column style="width: 85%"><p:commandButton value="Edit" icon="ui-icon-check" style="height: 105px ; width: 99%"/></p:column>
+                        <p:column style="width: 85%; "><p:commandButton  value="Delete" icon="ui-icon-check" style="height: 105px; margin-left: 1%; width: 99%"/></p:column>
+                    </p:panelGrid>
+                </p:panel>
             </pm:content>
-            <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
+           </h:form>
         </pm:page>
-
     </h:body>
 </html>

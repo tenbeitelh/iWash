@@ -62,3 +62,11 @@ a.ui-state-default{
     margin: 0 auto;
 
 }
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
