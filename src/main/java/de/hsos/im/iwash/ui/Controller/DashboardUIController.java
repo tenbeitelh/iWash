@@ -30,6 +30,6 @@ public class DashboardUIController implements Serializable{
     }
      public String gotoPerfectWash() {
         System.out.println("FUCKYOU");
-        return "pm:second";
+        return "perfect_wash.xhtml";
     }  
 }

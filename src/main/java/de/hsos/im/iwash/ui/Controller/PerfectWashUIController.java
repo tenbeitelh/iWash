@@ -90,7 +90,6 @@ public class PerfectWashUIController {
         } catch (IOException ex) {
             Logger.getLogger(PerfectWashUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRealPath(""));
     }
     
     public void loadConfiguration(){
