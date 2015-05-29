@@ -91,7 +91,7 @@ and open the template in the editor.
                                 <h:outputText value="#{process.machineId}"></h:outputText>
                             </p:column>
                             <p:column headerText="Startzeit">
-                                <h:outputText value="#{process.startTime}"></h:outputText>
+                                <h:outputText value="#{process.startTime.hours}:#{process.startTime.minutes}"></h:outputText>
                             </p:column>
                             <p:column headerText="Laufzeit">
                                 <h:outputText value="#{process.duration}"></h:outputText>
