@@ -40,9 +40,12 @@
                 <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
             </f:facet>       
             <pm:header> 
+                <f:facet name="left"><p:button value="Back" icon="back" onclick="PrimeFaces.back();"/></f:facet>
                 <p:panelGrid columns="2" style="width: 100%">
-                    <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" style="height: 30px; width: 110px" />
-                    <h:outputText value="iWash" style="font-size: 25px"/>
+                    <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img">
+                        
+                    </p:graphicImage>
+                    <h:outputText value="iWash" styleClass="header-text"/>
                 </p:panelGrid>
             </pm:header> 
             <pm:content>

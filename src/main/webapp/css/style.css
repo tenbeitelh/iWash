@@ -70,3 +70,12 @@ a.ui-state-default{
   width: 100%;
   height: auto;
 }
+
+.header-img{
+    height: 30px; 
+    width: 110px;
+}
+
+.header-text{
+    font-size: 25px;
+}
