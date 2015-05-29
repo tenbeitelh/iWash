@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:pe="http://primefaces.org/ui/extensions">     
+    <f:view renderKitId="PRIMEFACES_MOBILE" />
+    <h:head>
+        <script>
+            var originalPrimeFacesCw = PrimeFaces.cw;
+            PrimeFaces.cw = function (name, id, options, resource) {
+                resource = resource || name.toLowerCase();
+                originalPrimeFacesCw.apply(this, [name, id, options, resource]);
+            };
+        </script>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+    </h:head>
+    <h:body>
+
+        <pm:page id="second" style="background-image:url('../Images/app_background.jpg')">
+            <pm:header >
+                <p:panelGrid columns="2">
+                    <p:column style="width: 20%;"><p:graphicImage url="Images/miele-logo.png" height="35" style="" /> </p:column>
+                    <p:column style="width: 80%;"><h:outputText value="Perfect Wash" style="text-align: center; margin-top: 10px; display: block; float:left; " /></p:column>
+                </p:panelGrid>
+
+            </pm:header> 
+            <pm:content>
+
+            </pm:content>
+            <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
+        </pm:page>
+
+    </h:body>
+</html>
+

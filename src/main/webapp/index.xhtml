@@ -5,12 +5,12 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pm="http://primefaces.org/mobile">     
     <f:view xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pm="http://primefaces.org/mobile"
-    contentType="text/html"
-    renderKitId="PRIMEFACES_MOBILE"
-    xmlns:h="http://java.sun.com/jsf/html"/>
+            xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:p="http://primefaces.org/ui"
+            xmlns:pm="http://primefaces.org/mobile"
+            contentType="text/html"
+            renderKitId="PRIMEFACES_MOBILE"
+            xmlns:h="http://java.sun.com/jsf/html"/>
     <h:head>
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
@@ -22,85 +22,110 @@
                 originalPrimeFacesCw.apply(this, [name, id, options, resource]);
             };
         </script>
-        
+
         <title>Bootstrap Example</title>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <style>
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 70%;
-      margin: auto;
-  }
-  </style>
-</h:head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <style>
+            .carousel-inner > .item > img,
+            .carousel-inner > .item > a > img {
+                width: 70%;
+                margin: auto;
+            }
+        </style>
+    </h:head>
     <h:body>
         <pm:page id="main" style="background-image:url('../Images/app_background.jpg')">
-           <f:facet name="preinit">
-        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
-    </f:facet>       
- <h:form id="form">
+            <f:facet name="preinit">
+                <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
+            </f:facet>       
             <pm:header> 
                 <p:panelGrid columns="2" style="width: 100%">
                     <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" style="height: 30px; width: 110px" />
                     <h:outputText value="iWash" style="font-size: 25px"/>
                 </p:panelGrid>
-                </pm:header> 
+            </pm:header> 
             <pm:content>
-                <p:poll interval="3" update="votes" />
-                <p:panel header="Dashboard" id="votes">
-                <p:panelGrid columns="2" style="width: 100%">
-                    <p:column style="width: 100%; margin-left: 10%;">
-                        <h:form>
-                        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
-                        </h:form>
-                        
-                    </p:column> 
-                    <p:column style="width: 80%">
-                            <div style="width: 90%; margin: 0 auto;">
-                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}"  tableStyleClass="table table-striped">
-                            <p:column headerText="Maschinen Nr.:">
-                                <h:outputText value="#{process.machineId}"></h:outputText>
+                <h:form id="form">
+                    <p:poll interval="3" update="votes" />
+
+                    <p:panel header="Dashboard" id="votes">
+                        <p:panelGrid columns="2" style="width: 100%">
+                            <p:column style="width: 100%; margin-left: 10%;">
+                                <h:form>
+                                    <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
+                                </h:form>
+
+                            </p:column> 
+                            <p:column style="width: 80%">
+                                <div style="width: 90%; margin: 0 auto;">
+                                    <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}"  tableStyleClass="table table-striped">
+                                        <p:column headerText="Maschinen Nr.:">
+                                            <h:outputText value="#{process.machineId}"></h:outputText>
+                                        </p:column>
+                                        <p:column headerText="Startzeit">
+                                            <h:outputText value="#{process.startTime.hours}"></h:outputText>
+                                            :
+                                            <h:outputText value="#{process.startTime.minutes}"></h:outputText>
+                                        </p:column>
+                                        <p:column headerText="Laufzeit">
+                                            <h:outputText value="#{process.duration}"></h:outputText>
+                                        </p:column>    
+                                        <p:column headerText="Washprogramm">
+                                            <h:outputText value="#{process.washProgram}"></h:outputText>
+                                        </p:column>
+                                        <p:column headerText="Reinigungsqualität">
+                                            <h:outputText value="#{process.quality * 100}%"></h:outputText>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+
                             </p:column>
-                            <p:column headerText="Startzeit">
-                                <h:outputText value="#{process.startTime.hours}"></h:outputText>
-                                :
-                                <h:outputText value="#{process.startTime.minutes}"></h:outputText>
+
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" style="width: 100%">
+                            <p:column style="width: 80%"><p:chart type="bar" model="#{chartView.barModel}" style="height:160px"/></p:column>
+                            <p:column style="width: 80%; margin-left: 40%; margin-top: 2%">
+                                <p:chart type="line" model="#{chartView.lineModel2}" style="height:180px;"/>
                             </p:column>
-                            <p:column headerText="Laufzeit">
-                                <h:outputText value="#{process.duration}"></h:outputText>
-                            </p:column>    
-                            <p:column headerText="Washprogramm">
-                                <h:outputText value="#{process.washProgram}"></h:outputText>
-                            </p:column>
-                            <p:column headerText="Reinigungsqualität">
-                                <h:outputText value="#{process.quality * 100}%"></h:outputText>
-                            </p:column>
-                        </p:dataTable>
-                    </div>
-                            
-                        </p:column>
-                    
-               </p:panelGrid>
-                    <p:panelGrid columns="2" style="width: 100%">
-                        <p:column style="width: 80%"><p:chart type="bar" model="#{chartView.barModel}" style="height:160px"/></p:column>
-                        <p:column style="width: 80%; margin-left: 40%; margin-top: 2%">
-                        <p:chart type="line" model="#{chartView.lineModel2}" style="height:180px;"/>
-        </p:column>
-               </p:panelGrid>
-                </p:panel>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
                 <p:panel style="margin-top: 1%; background-color: transparent !important;">
-                    <p:panelGrid columns="2" style="width: 100%; margin-top: -1.5%; background-color: transparent !important;">
-                        <p:column style="width: 85%"><p:commandButton value="Perfect Wash" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%;" onclick=""/></p:column>
-                        <p:column style="width: 85%; margin-left: 5%"><p:commandButton value="Support" style="height: 105px; margin-left: 1%; width: 99%; background-color: red; color: white; font-size: 200%" actionListener="#{dashboardUIController.gotoPerfectWash()}" ajax="false"/></p:column>
-                    </p:panelGrid>
-                    <p:panelGrid columns="2" style="width: 100%; margin-top: -2%; background-color: transparent !important;">
-                        <p:column style="width: 85%; background-color: transparent !important;"><p:commandButton value="Einstellungen" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%" onclick=""/></p:column>
-                        <p:column style="width: 85%; background-color: transparent !important;; "><p:commandButton  value="Gerätesteuerung" style="height: 105px; margin-left: 1%; width: 99%; background-color: red; color: white; font-size: 200%" onclick=""/></p:column>
-                    </p:panelGrid>
+                    <h:form>
+                        <p:panelGrid columns="2" style="width: 100%; margin-top: -1.5%; background-color: transparent !important;">
+                            <p:column style="width: 85%">
+                                <p:commandButton value="Perfect Wash" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%;" action="#{dashboardUIController.goToPerfectWash()}" ajax="false"/>
+                            </p:column>
+                            <p:column style="width: 85%; margin-left: 5%">
+                                <p:commandButton value="Support" style="height: 105px; margin-left: 1%; width: 99%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSupport()}" ajax="false"/>
+                            </p:column>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" style="width: 100%; margin-top: -2%; background-color: transparent !important;">
+                            <p:column style="width: 85%; background-color: transparent !important;">
+                                <p:commandButton value="Einstellungen" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSettings()}"/>
+                            </p:column>
+                            <p:column style="width: 85%; background-color: transparent !important;; ">
+                                <p:commandButton  value="Gerätesteuerung" style="height: 105px; margin-left: 1%; width: 99%; background-color: red; color: white; font-size: 200%" />
+                            </p:column>
+                        </p:panelGrid>
+                    </h:form>
                 </p:panel>
             </pm:content>
-           </h:form>
+
+        </pm:page>
+        <pm:page id="second" style="background-image:url('../Images/app_background.jpg')">
+            <pm:header >
+                <p:panelGrid columns="2">
+                    <p:column style="width: 20%;"><p:graphicImage url="Images/miele-logo.png" height="35" style="" /> </p:column>
+                    <p:column style="width: 80%;"><h:outputText value="Perfect Wash" style="text-align: center; margin-top: 10px; display: block; float:left; " /></p:column>
+                </p:panelGrid>
+
+            </pm:header> 
+            <pm:content>
+
+            </pm:content>
+            <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
         </pm:page>
     </h:body>
 </html>

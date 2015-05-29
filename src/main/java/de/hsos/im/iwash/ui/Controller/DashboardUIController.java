@@ -28,8 +28,15 @@ public class DashboardUIController implements Serializable{
 
     public DashboardUIController() {
     }
-     public String gotoPerfectWash() {
-        System.out.println("FUCKYOU");
-        return "perfect_wash.xhtml";
+     public String goToPerfectWash() {
+        return "perfect_wash.xhtml?faces-redirect=true";
     }  
+    
+     public String goToSupport(){
+         return "support.xhtml?faces-redirect=true";
+     }
+     
+     public String goToSettings(){
+         return "settings.xhtml?faces-redirect=true";
+     }
 }
