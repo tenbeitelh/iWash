@@ -46,19 +46,21 @@ and open the template in the editor.
                 </p:panel>
 
                 <p:panel id="settings" header="Einstellungen">
-                    <h:form>
-                        <p:panelGrid columns="2">
-                            <p:column>
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        Benachrichtigunen
-                                    </div>
+
+                    <p:panelGrid columns="2">
+                        <p:column>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    Benachrichtigunen
                                 </div>
-                            </p:column>
-                            <p:column>
+                            </div>
+                        </p:column>
+                        <p:column>
+                            <h:form>
                                 <p:panelGrid columns="2">
+
                                     <p:selectOneMenu id="emp" value="#{settingsController.selectedEmployee}" style="width: 100px;">
-                                        <p:ajax update="tel" listener="#{settingsController.onEmployeeChanges()}"/>
+                                        <p:ajax process="@this" listener="#{settingsController.onEmployeeChanges()}" update="tel"/>
                                         <f:selectItems value="#{settingsController.employees}" />
                                     </p:selectOneMenu>
                                     <p:inputSwitch id="switch" value="#{settingsController.selectedMachine.notifaction}" />
@@ -72,12 +74,15 @@ and open the template in the editor.
                                         <p:graphicImage value="/Images/mail.png" ></p:graphicImage>
                                         <p:outputLabel id="mail" value="#{settingsController.email}"></p:outputLabel>
                                     </p:column>
+
                                 </p:panelGrid>
-                            </p:column>
-                        </p:panelGrid>
-                    </h:form>
+                            </h:form>
+                        </p:column>
+                    </p:panelGrid>
+
                 </p:panel>
             </pm:content>
+
             <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
         </pm:page>
 

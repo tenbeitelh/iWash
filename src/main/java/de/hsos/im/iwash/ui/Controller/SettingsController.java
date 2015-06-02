@@ -104,8 +104,12 @@ public class SettingsController implements Serializable{
     
     
     public void onEmployeeChanges(){
+        System.out.println(this.telephone);
+        System.out.println(this.email);
         this.telephone = selectedEmployee.getTelephone();
         this.email = selectedEmployee.geteMail();
+        System.out.println(this.telephone);
+        System.out.println(this.email);
     }
     
     
