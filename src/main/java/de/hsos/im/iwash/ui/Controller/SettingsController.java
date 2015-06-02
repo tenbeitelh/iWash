@@ -32,12 +32,25 @@ public class SettingsController implements Serializable{
     private MachineSettings selectedMachine;
     private Employee selectedEmployee;
     
+    private String telephone;
+    private String email ;
+    
     public SettingsController() {
+        
+        
         machineSettingsMap = new HashMap<>();
         machineSettingsMap.put("Machine1", new MachineSettings("Machine1", true));
         machineSettingsMap.put("Machine2", new MachineSettings("Machine2", true));
         machineSettingsMap.put("Machine3", new MachineSettings("Machine3", false));
         employees = MachineSettings.getEmployeeMap();
+        
+        this.selectedMachine = machineSettingsMap.get("Machine1");
+        this.selectedEmployee= employees.get("Walter");
+        
+        this.telephone = this.selectedEmployee.getTelephone();
+        this.email = this.selectedEmployee.geteMail();
+        
+            
     }
 
     public Map<String, MachineSettings> getMachineSettingsMap() {
@@ -71,7 +84,29 @@ public class SettingsController implements Serializable{
     public void setSelectedEmployee(Employee selectedEmployee) {
         this.selectedEmployee = selectedEmployee;
     }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
+    
+    
+    public void onEmployeeChanges(){
+        this.telephone = selectedEmployee.getTelephone();
+        this.email = selectedEmployee.geteMail();
+    }
     
     
 }

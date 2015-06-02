@@ -9,8 +9,7 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pm="http://primefaces.org/mobile"
-      xmlns:pe="http://primefaces.org/ui/extensions">     
+      xmlns:pm="http://primefaces.org/mobile">     
     <f:view renderKitId="PRIMEFACES_MOBILE" />
     <h:head>
         <script>
@@ -42,7 +41,6 @@ and open the template in the editor.
             <pm:content>
                 <p:panel header="Waschmaschinen">
                     <p:selectOneMenu id="machine" value="#{settingsController.selectedMachine}" style="width: 100px;">
-                        <p:ajax update="settings"/>
                         <f:selectItems value="#{settingsController.machineSettingsMap}" />
                     </p:selectOneMenu>
                 </p:panel>
@@ -60,22 +58,20 @@ and open the template in the editor.
                             <p:column>
                                 <p:panelGrid columns="2">
                                     <p:selectOneMenu id="emp" value="#{settingsController.selectedEmployee}" style="width: 100px;">
-                                        <p:ajax update="switch"/>
-                                        <p:ajax update="tel"/>
-                                        <p:ajax update="mail"/>
+                                        <p:ajax update="tel" listener="#{settingsController.onEmployeeChanges()}"/>
                                         <f:selectItems value="#{settingsController.employees}" />
                                     </p:selectOneMenu>
                                     <p:inputSwitch id="switch" value="#{settingsController.selectedMachine.notifaction}" />
 
-                                    <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
+                                    <p:column>
+                                        <p:graphicImage value="/Images/telephone.png" ></p:graphicImage>
+                                        <p:outputLabel id="tel" value="#{settingsController.telephone}"></p:outputLabel>
+                                    </p:column>
 
-                                    <p:outputLabel id="tel" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
-
-
-                                    <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
-
-                                    <p:outputLabel id="mail" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
-
+                                    <p:column>
+                                        <p:graphicImage value="/Images/mail.png" ></p:graphicImage>
+                                        <p:outputLabel id="mail" value="#{settingsController.email}"></p:outputLabel>
+                                    </p:column>
                                 </p:panelGrid>
                             </p:column>
                         </p:panelGrid>
