@@ -29,22 +29,59 @@ and open the template in the editor.
 
     </h:head>
     <h:body>
-<h:form>
-        <pm:page id="second" style="background-image:url('../Images/app_background.jpg')">
-            <pm:header> 
+        <h:form>
+            <pm:page id="second" style="background-image:url('../Images/app_background.jpg')">
+                <pm:header >
                     <p:panelGrid columns="2" style="width: 100%">
-                    <p:commandLink action="#{dashboardUIController.goToIndex()}">
-    <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
-    </p:commandLink>
-                    <h:outputText value="iWash" styleClass="header-text"/>
-                </p:panelGrid>
-            </pm:header> 
-            <pm:content>
+                        <p:graphicImage url="Images/miele-logo.png" styleClass="header-img" />
+                        <h:outputText value="Perfect Wash" styleClass="header-text" />
+                    </p:panelGrid>
 
-            </pm:content>
-            <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
-        </pm:page>
-</h:form>
+                </pm:header> 
+                <pm:content>
+                    <p:panel header="Maschine">
+                        <p:selectOneMenu id="machine" value="#{settingsUIController.machineName}" style="width:150px">
+                            <f:selectItems value="#{settingsUIController.machineMap}" />
+                            <p:ajax process="@this" listener="#{settingsUIController.onMachineChange()}" update="switch" />
+                        </p:selectOneMenu>
+                    </p:panel>
+                    <p:panel header="">
+                        <p:panelGrid columns="2">
+                            <p:column>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        Benachrichtigung
+                                    </div>
+                                </div>
+                            </p:column>
+                            <p:column>
+                                <p:panelGrid columns="2">
+                                    <p:column>
+                                        <p:selectOneMenu id="emp" value="#{settingsUIController.employeeName}" style="width:150px">
+                                            <f:selectItems value="#{settingsUIController.employeeMap}" />
+                                            <p:ajax listener="#{settingsUIController.onEmployeeChange()}" update="mail, tel" />
+                                        </p:selectOneMenu>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputSwitch id="switch" value="#{settingsUIController.notification}"></p:inputSwitch>
+                                    </p:column>
+                                    
+                                    <p:column>
+                                        <p:graphicImage value="/Images/mail.png">#{settingsUIController.geteMail()}</p:graphicImage>
+                                        <p:outputLabel id="mail" value="#{settingsUIController.geteMail()}"></p:outputLabel>
+                                    </p:column>
+                                    <p:column>
+                                        <p:graphicImage value="/Images/telephone.png"></p:graphicImage>
+                                        <p:outputLabel id="tel" value="#{settingsUIController.telephone}"></p:outputLabel>
+                                    </p:column>
+                                </p:panelGrid>
+                            </p:column>
+                        </p:panelGrid>
+                    </p:panel>
+                </pm:content>
+                <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
+            </pm:page>
+        </h:form>
+>>>>>>> origin/master
     </h:body>
 </html>
-

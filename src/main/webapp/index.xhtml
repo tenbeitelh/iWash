@@ -12,6 +12,8 @@
             renderKitId="PRIMEFACES_MOBILE"
             xmlns:h="http://java.sun.com/jsf/html"/>
     <h:head>
+        <title>iWash</title>
+        
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
@@ -22,8 +24,6 @@
                 originalPrimeFacesCw.apply(this, [name, id, options, resource]);
             };
         </script>
-
-        <title>Bootstrap Example</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script>
@@ -51,7 +51,6 @@
                    <p:commandLink action="#{dashboardUIController.goToIndex()}">
             <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
     </p:commandLink>
-
                     <h:outputText value="iWash" styleClass="header-text"/>
                 </p:panelGrid>
             </pm:header> 
