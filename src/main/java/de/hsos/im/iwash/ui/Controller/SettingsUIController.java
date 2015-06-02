@@ -31,7 +31,7 @@ public class SettingsUIController {
     private String eMail = "";
     private String telephone = "";
 
-    private boolean notification;
+    private boolean notification = true;
 
     /**
      * Creates a new instance of SettingsUIController
@@ -49,9 +49,8 @@ public class SettingsUIController {
 
     public void onMachineChange() {
 
-        if (this.settingsMap.get(this.machineName) != null) {
-            this.notification = this.settingsMap.get(this.machineName).isNotification();
-        }
+        this.notification = this.settingsMap.get(this.machineName).isNotification();
+
         System.out.println(this.notification);
         System.out.println(machineName);
     }
