@@ -32,14 +32,52 @@ and open the template in the editor.
 
         <pm:page id="second" style="background-image:url('../Images/app_background.jpg')">
             <pm:header >
-                <p:panelGrid columns="2">
-                    <p:column style="width: 20%;"><p:graphicImage url="Images/miele-logo.png" height="35" style="" /> </p:column>
-                    <p:column style="width: 80%;"><h:outputText value="Perfect Wash" style="text-align: center; margin-top: 10px; display: block; float:left; " /></p:column>
+                <p:panelGrid columns="2" style="width: 100%">
+                    <p:graphicImage url="Images/miele-logo.png" styleClass="header-img" />
+                    <h:outputText value="Perfect Wash" styleClass="header-text" />
                 </p:panelGrid>
 
             </pm:header> 
-            <pm:content>
 
+            <pm:content>
+                <p:panel header="Waschmaschinen">
+                    <p:selectOneMenu id="machine" value="#{settingsController.selectedMachine}" style="width: 100px;">
+                        <f:selectItems value="#{settingsController.machineSettingsMap}" />
+                    </p:selectOneMenu>
+                </p:panel>
+
+                <p:panel header="Einstellungen">
+                    <p:panelGrid columns="2">
+                        <p:column>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    Benachrichtigunen
+                                </div>
+                            </div>
+                        </p:column>
+                        <p:column>
+                            <p:panelGrid columns="2">
+                                <p:selectOneMenu id="emp" value="#{settingsController.selectedEmployee}" style="width: 100px;">
+                                    <p:ajax update="switch"/>
+                                    <p:ajax update="tel"/>
+                                    <p:ajax update="mail"/>
+                                    <f:selectItems value="#{settingsController.employees}" />
+                                </p:selectOneMenu>
+                                <p:inputSwitch id="switch" value="#{settingsController.selectedMachine.notifaction}" />
+
+                                <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
+
+                                <p:outputLabel id="tel" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
+
+
+                                <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
+
+                                <p:outputLabel id="mail" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
+
+                            </p:panelGrid>
+                        </p:column>
+                    </p:panelGrid>
+                </p:panel>
             </pm:content>
             <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
         </pm:page>
