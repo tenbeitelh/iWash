@@ -1,21 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+
+<!-- saved from url=(0083)http://www.html5rocks.com/de/tutorials/webgl/jsartoolkit_webrtc/AR_mediaStream.html -->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pm="http://primefaces.org/mobile">     
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:pe="http://primefaces.org/ui/extensions">     
     <f:view renderKitId="PRIMEFACES_MOBILE" />
-    <h:head>
-        
-    </h:head>
-    <h:body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+         
+<script type="text/javascript" async="" src="./AR_mediaStream_files/ga.js"></script>
+<script id="tinyhippos-injected">
+if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }
+</script>
+<script src="./AR_mediaStream_files/JSARToolKit.js"></script>
+<script src="./AR_mediaStream_files/magi.js"></script>
+<script src="./AR_mediaStream_files/utils.js"></script>
+<script src="./AR_mediaStream_files/photos.js"></script>
+<script src="js/AR.js"></script>
+ <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+       
 
-        
-    </h:body>
+<style>
+  #loading {
+    font-size: 80px;
+    font-weight: bold;
+    font-family: Times;
+  }
+</style>
+</head>
+<body>
+    <h:form>
+     <pm:page id="main" style="background-image:url('../Images/app_background.jpg')">
+            <f:facet name="preinit">
+                <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
+            </f:facet>       
+            <pm:header> 
+                    <p:panelGrid columns="2" style="width: 100%">
+                    <p:commandLink action="#{dashboardUIController.goToIndex()}">
+    <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
+    </p:commandLink>
+                    <h:outputText value="iWash" styleClass="header-text"/>
+                </p:panelGrid>
+            </pm:header>  
+            <pm:content>
+                    <p:panel header="Dashboard" id="votes">
+                        <div id="loading" style="display: none;">Hang on, I'm loading stuff...</div>
+
+
+
+<video width="640" height="480" loop="" autoplay="" controls="" style="display: none;" src="blob:http%3A//www.html5rocks.com/34ab449d-2752-4321-ad36-dadd50536fe4"></video>
+<canvas width="960" height="720" style="left: 0px; top: 0px; -webkit-transform: scale(-1, 1);">
+</canvas>
+                    </p:panel>
+                </pm:content>
+
+        </pm:page>
+    </h:form>
+</body>
 </html>

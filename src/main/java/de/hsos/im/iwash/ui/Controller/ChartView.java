@@ -8,12 +8,14 @@ package de.hsos.im.iwash.ui.Controller;
 
 import de.hsos.im.iwash.model.WasherService;
 import de.hsos.im.iwash.model.WashProcess;
-import de.hsos.im.iwash.model.washerlist;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Model;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
@@ -33,7 +35,7 @@ import org.primefaces.model.chart.PieChartModel;
  *
  * @author Ace
  */
-@ManagedBean
+@Model
 public class ChartView implements Serializable {
  
     private BarChartModel barModel;
@@ -43,9 +45,8 @@ public class ChartView implements Serializable {
     private LineChartModel lineModel2;
     
     @Inject
-    washerlist list;
+    ChartSessionBean testBean;
     
-    private List<WashProcess> washerlist;
     private List<String> supplier;
     private List<String> supplies;
     private WashProcess selectedWasher;
@@ -56,9 +57,7 @@ public class ChartView implements Serializable {
     public void init() {
         createBarModels();
         createPieModels();
-        washerlist = service.createWashProcess(4);
         createBarModels();
-        list.setX(0);
          createLineModels();
     }
      public LineChartModel getLineModel2() {
@@ -155,16 +154,64 @@ public class ChartView implements Serializable {
     
     private HorizontalBarChartModel createHorizontalBarModel() { 
         
+        
+        
      horizontalBarModel = new HorizontalBarChartModel();
         ChartSeries boys = new ChartSeries();
         ChartSeries girls = new ChartSeries();
-     
-           Random rand = new Random();
-         int  WDA110 = rand.nextInt(100) + 0;
-         int  EX200P = rand.nextInt(100) + 0;
-         int  WDA1101 = rand.nextInt(100) + 0;
-         int  EDF800 = rand.nextInt(100) + 0;
-         int  KP_233 = rand.nextInt(100) + 0;
+            int  WDA110 = testBean.getMaschine1();
+           if(testBean.getMaschine1()<=30)
+           {
+               WDA110++;
+         testBean.setMaschine1(testBean.getMaschine1()+1);
+           }
+           else
+           {
+               testBean.setMaschine1(0);
+           }
+           
+           int  EX200P = testBean.getMaschine2();
+           if(testBean.getMaschine2()<=1200)
+           {
+               EX200P++;
+         testBean.setMaschine2(testBean.getMaschine2()+1);
+           }
+           else
+           {
+               testBean.setMaschine2(0);
+           }
+           
+           int  WDA1101 = testBean.getMaschine3();
+           if(testBean.getMaschine3()<=150)
+           {
+               WDA1101++;
+         testBean.setMaschine3(testBean.getMaschine3()+1);
+           }
+           else
+           {
+               testBean.setMaschine3(0);
+           }
+           
+            int  EDF800 = testBean.getMaschine4();
+           if(testBean.getMaschine4()<=30)
+           {
+               EDF800++;
+         testBean.setMaschine4(testBean.getMaschine4()+1);
+           }
+           else
+           {
+               testBean.setMaschine4(0);
+           }
+           int  KP_233 = testBean.getMaschine5();
+           if(testBean.getMaschine5()<=50)
+           {
+               KP_233++;
+         testBean.setMaschine5(testBean.getMaschine5()+1);
+           }
+           else
+           {
+               testBean.setMaschine5(0);
+           }
         
         boys.setLabel("Laufzeit");
         boys.set("WDA110", WDA110);
@@ -175,11 +222,11 @@ public class ChartView implements Serializable {
  
         
         girls.setLabel("Verbleibende Laufzeit");
-        girls.set("WDA110", 100-WDA110);
-        girls.set("EX200P", 100-EX200P);
-        girls.set("WDA110", 100-WDA1101);
-        girls.set("EDF800", 100-EDF800);
-        girls.set("KP/233", 100-KP_233);
+        girls.set("WDA110", 30-WDA110);
+        girls.set("EX200P", 1200-EX200P);
+        girls.set("WDA110", 150-WDA1101);
+        girls.set("EDF800", 30-EDF800);
+        girls.set("KP/233", 50-KP_233);
  
         horizontalBarModel.addSeries(boys);
         horizontalBarModel.addSeries(girls);
@@ -190,7 +237,7 @@ public class ChartView implements Serializable {
         Axis xAxis = horizontalBarModel.getAxis(AxisType.Y);
         xAxis.setLabel("Maschinen");
         xAxis.setMin(0);
-        xAxis.setMax(200);
+        xAxis.setMax(1200);
          
         Axis yAxis = horizontalBarModel.getAxis(AxisType.X);
         yAxis.setLabel("Laufzeit in %");
@@ -216,14 +263,6 @@ public class ChartView implements Serializable {
         return pieModel1;
     }
     
-    public List<WashProcess> getWasherlist() {
-        return washerlist;
-    }
-
-    public void setWasherlist(List<WashProcess> washerlist) {
-        this.washerlist = washerlist;
-    }
- 
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
  

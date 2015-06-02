@@ -1,0 +1,22 @@
+Photos = [
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png",
+"remote.png"
+];

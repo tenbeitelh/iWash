@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.time.Clock;
+import javax.enterprise.inject.Model;
 import javax.faces.bean.ManagedBean;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -23,7 +24,7 @@ import org.primefaces.model.chart.LineChartSeries;
  * @author Ace
  */
 @Named(value = "dashboardUIController")
-@ManagedBean
+@Model
 public class DashboardUIController implements Serializable{
 
     public DashboardUIController() {
@@ -34,6 +35,11 @@ public class DashboardUIController implements Serializable{
     
      public String goToSupport(){
          return "support.xhtml?faces-redirect=true";
+     }
+     
+       public String goToIndex(){
+         System.out.println("check goToIndex");
+         return "index.xhtml?faces-redirect=true";
      }
      
      public String goToSettings(){

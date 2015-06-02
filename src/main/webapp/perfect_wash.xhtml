@@ -29,17 +29,18 @@ and open the template in the editor.
     
     </h:head>
     <h:body>
-
+        <h:form>
         <pm:page id="second" style="background-image:url('../Images/app_background.jpg')">
-            <pm:header >
-                <p:panelGrid columns="2" style="width: 100%">
-                    <p:graphicImage url="Images/miele-logo.png" styleClass="header-img" />
-                    <h:outputText value="Perfect Wash" styleClass="header-text" />
+            <pm:header> 
+                    <p:panelGrid columns="2" style="width: 100%">
+                    <p:commandLink action="#{dashboardUIController.goToIndex()}">
+    <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
+    </p:commandLink>
+                    <h:outputText value="iWash" styleClass="header-text"/>
                 </p:panelGrid>
-
             </pm:header> 
             <pm:content>
-                <p:panel header="Konfiguration" >
+                <p:panel header="Konfiguration">
                     <p:panelGrid columns="2" layout="grid" style="margin-right: 25px;">
                         <p:panelGrid columns="2" layout="grid">
                             <h:outputLabel for="modus" value="Bevorzugter Washmodus:"></h:outputLabel>
@@ -57,7 +58,7 @@ and open the template in the editor.
                             <h:outputLabel for="quantity" value="Wasch-Temperatur:"></h:outputLabel>
                             <p:inputText id="quantity" value="#{perfectWashUIController.quantity}"></p:inputText>
 
-                            <p:selectBooleanCheckbox id="usePerfectWash" value="#{perfectWashUIController.usePerfectWash}" />
+                            <p:selectBooleanCheckbox id="usePerfectWash" value="#{perfectWashUIController.usePerfectWash}" style="height:40px" />
                             <h:outputLabel for="usePerfectWash" value="Perfect Wash anwenden " />
                         </p:panelGrid>
                         <p:panelGrid columns="2" layout="grid" style="margin-left: 25px;">
@@ -108,6 +109,6 @@ and open the template in the editor.
             </pm:content>
             <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
         </pm:page>
-
+        </h:form>
     </h:body>
 </html>
