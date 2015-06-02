@@ -42,41 +42,44 @@ and open the template in the editor.
             <pm:content>
                 <p:panel header="Waschmaschinen">
                     <p:selectOneMenu id="machine" value="#{settingsController.selectedMachine}" style="width: 100px;">
+                        <p:ajax update="settings"/>
                         <f:selectItems value="#{settingsController.machineSettingsMap}" />
                     </p:selectOneMenu>
                 </p:panel>
 
-                <p:panel header="Einstellungen">
-                    <p:panelGrid columns="2">
-                        <p:column>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    Benachrichtigunen
+                <p:panel id="settings" header="Einstellungen">
+                    <h:form>
+                        <p:panelGrid columns="2">
+                            <p:column>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        Benachrichtigunen
+                                    </div>
                                 </div>
-                            </div>
-                        </p:column>
-                        <p:column>
-                            <p:panelGrid columns="2">
-                                <p:selectOneMenu id="emp" value="#{settingsController.selectedEmployee}" style="width: 100px;">
-                                    <p:ajax update="switch"/>
-                                    <p:ajax update="tel"/>
-                                    <p:ajax update="mail"/>
-                                    <f:selectItems value="#{settingsController.employees}" />
-                                </p:selectOneMenu>
-                                <p:inputSwitch id="switch" value="#{settingsController.selectedMachine.notifaction}" />
+                            </p:column>
+                            <p:column>
+                                <p:panelGrid columns="2">
+                                    <p:selectOneMenu id="emp" value="#{settingsController.selectedEmployee}" style="width: 100px;">
+                                        <p:ajax update="switch"/>
+                                        <p:ajax update="tel"/>
+                                        <p:ajax update="mail"/>
+                                        <f:selectItems value="#{settingsController.employees}" />
+                                    </p:selectOneMenu>
+                                    <p:inputSwitch id="switch" value="#{settingsController.selectedMachine.notifaction}" />
 
-                                <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
+                                    <h:commandButton image="/Images/telephone.png" styleClass="imageButton"></h:commandButton>
 
-                                <p:outputLabel id="tel" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
+                                    <p:outputLabel id="tel" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
 
 
-                                <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
+                                    <h:commandButton image="/Images/mail.png" styleClass="imageButton"></h:commandButton>
 
-                                <p:outputLabel id="mail" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
+                                    <p:outputLabel id="mail" value="#{settingsController.selectedEmployee.telephone}"></p:outputLabel>
 
-                            </p:panelGrid>
-                        </p:column>
-                    </p:panelGrid>
+                                </p:panelGrid>
+                            </p:column>
+                        </p:panelGrid>
+                    </h:form>
                 </p:panel>
             </pm:content>
             <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
