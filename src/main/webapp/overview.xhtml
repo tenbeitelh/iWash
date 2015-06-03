@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pm="http://primefaces.org/mobile">     
+    <f:view xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:p="http://primefaces.org/ui"
+            xmlns:pm="http://primefaces.org/mobile"
+            contentType="text/html"
+            renderKitId="PRIMEFACES_MOBILE"
+            xmlns:h="http://java.sun.com/jsf/html"/>
+    <h:head>
+        <title>iWash</title>
+        
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
+        <script>
+            var originalPrimeFacesCw = PrimeFaces.cw;
+            PrimeFaces.cw = function (name, id, options, resource) {
+                resource = resource || name.toLowerCase();
+                originalPrimeFacesCw.apply(this, [name, id, options, resource]);
+            };
+        </script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script>
+            function foo () {
+             alert("check")
+        }
+        </script>
+        
+        <style>
+            .carousel-inner > .item > img,
+            .carousel-inner > .item > a > img {
+                width: 70%;
+                margin: auto;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <pm:page id="main" style="background-image:url('../Images/app_background.jpg')">
+            <f:facet name="preinit">
+                <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
+            </f:facet>       
+            <pm:header> 
+               <p:panelGrid columns="2" style="width: 100%">
+                      
+                   <p:commandLink action="#{dashboardUIController.goToIndex()}">
+            <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
+    </p:commandLink>
+                    <h:outputText value="iWash" styleClass="header-text"/>
+                </p:panelGrid>
+            </pm:header> 
+            <pm:content>
+                <h:form id="form">
+                    <p:poll interval="3" update="votes" />
+
+                    <p:panel header="Dashboard" id="votes">
+                        <p:panelGrid columns="2" style="width: 100%">
+                            
+                            
+                            
+                            <p:panel header="Maschine 1: WDA110">
+                            <p:column style="width: 100%; margin-left: 10%;">
+                                <h:form>
+                                    <p:panelGrid columns="2" style="width: 100%">
+                                        <p:column>
+                                            <p:chart type="pie" model="#{chartView.maschine1}" style="width:90%;height:90%" />
+                                        </p:column>
+                                        <p:column>
+                                         <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: WDA110</p:outputLabel>
+                                            <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
+                                            <p:outputLabel>Fortschritt: #{chartProgressModelBean.progressMaschineA}%
+                                            </p:outputLabel>
+                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
+                                            <p:outputLabel style="color: red;">Temperatur: 20°C</p:outputLabel>
+                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
+                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>    
+                                        </p:column>
+                                    </p:panelGrid>
+                                </h:form>
+
+                            </p:column> 
+                    </p:panel>
+                            <p:column style="width: 80%">
+                                <p:panel header="Maschine 2: EX200P" style="margin-left: 5px">
+                          
+                          <p:panelGrid columns="2" style="width: 100%">
+                                        <p:column>
+                                            <p:chart type="pie" model="#{chartView.maschine2}" style="width:90%;height:90%" />
+                                        </p:column>
+                                        <p:column>
+                                            <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: EX200P</p:outputLabel>
+                                            <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
+                                            <p:outputLabel>
+                                                Fortschritt: #{chartProgressModelBean.progressMAschineB}%</p:outputLabel>
+                                            
+                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
+                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
+                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
+                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>
+                                        </p:column>
+                                    </p:panelGrid>
+                          
+                          
+                          </p:panel>
+                            </p:column>
+                        </p:panelGrid>
+                        
+                        <p:panelGrid columns="2" style="width: 100%">
+                            <p:column style="width: 80%">
+                                <p:panel header="Maschine 3: WDA1101" style="margin-top: 5px;">
+                                <p:panelGrid columns="2" style="width: 100%">
+                                        <p:column>
+                                            <p:chart type="pie" model="#{chartView.maschine3}" style="width:90%;height:90%" />
+                                        </p:column>
+                                        <p:column>
+                                             <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: WDA1101</p:outputLabel>
+                                            <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
+                                            <p:outputLabel>
+                                                Fortschritt: #{chartProgressModelBean.progressMAschineC}%</p:outputLabel>
+                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
+                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
+                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
+                                            <p:outputLabel>Zustand: In Arbeit!</p:outputLabel>
+                                        </p:column>
+                                    </p:panelGrid>
+                            
+                            </p:panel>
+                            </p:column>
+                            
+                            <p:column style="width: 80%; margin-left: 40%; margin-top: 2%">
+                                <p:panel header="Maschine 4: EDF800" style="margin-left: 5px; margin-top: 5px;">
+                            <p:panelGrid columns="2" style="width: 100%">
+                                        <p:column>
+                                            <p:chart type="pie" model="#{chartView.maschine4}" style="width:90%;height:90%"/>
+                                        </p:column>
+                                        <p:column>
+                                             <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: EDF800</p:outputLabel>
+                                            <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
+                                            <p:outputLabel>
+                                                Fortschritt: #{chartProgressModelBean.progressMAschineD}%</p:outputLabel>
+                                            
+                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
+                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
+                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
+                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>
+                                        </p:column>
+                                    </p:panelGrid>
+                                
+                            </p:panel>
+                            </p:column>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" style="width: 100%">
+                            <p:column style="width: 80%">
+                                <p:panel header="Maschine 5: KP/233" style="margin-top: 5px;">
+                            <p:panelGrid columns="2" style="width: 100%">
+                                        <p:column>
+                                            <p:chart type="pie" model="#{chartView.maschine5}" style="width:90%;height:90%" />
+                                        </p:column>
+                                        <p:column>
+                                             <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: KP/233</p:outputLabel>
+                                            <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
+                                            <p:outputLabel>
+                                                Fortschritt: #{chartProgressModelBean.progressMAschineE}%</p:outputLabel>
+                                            
+                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
+                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
+                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
+                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>
+                                        </p:column>
+                                    </p:panelGrid>   
+                            </p:panel>
+                            </p:column>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>     
+            </pm:content>
+        </pm:page>
+    </h:body>
+</html>

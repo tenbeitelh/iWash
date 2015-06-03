@@ -10,15 +10,20 @@ import de.hsos.im.iwash.model.WasherService;
 import de.hsos.im.iwash.model.WashProcess;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
  
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -40,12 +45,24 @@ public class ChartView implements Serializable {
  
     private BarChartModel barModel;
     private PieChartModel pieModel1;
+    private PieChartModel Maschine1;
+    private PieChartModel Maschine2;
+    private PieChartModel Maschine3;
+    private PieChartModel Maschine4;
+    private PieChartModel Maschine5;
     private PieChartModel pieModel2;
     private HorizontalBarChartModel horizontalBarModel;
     private LineChartModel lineModel2;
     
     @Inject
     ChartSessionBean testBean;
+    
+    @Inject 
+    ChartProgressModelBean model;
+    
+    
+    @Inject
+    PieSessionBean PieTestBean;
     
     private List<String> supplier;
     private List<String> supplies;
@@ -58,12 +75,52 @@ public class ChartView implements Serializable {
         createBarModels();
         createPieModels();
         createBarModels();
-         createLineModels();
+        createLineModels();
     }
      public LineChartModel getLineModel2() {
         return lineModel2;
     }
-     
+
+    public PieChartModel getMaschine1() {
+        return Maschine1;
+    }
+
+    public void setMaschine1(PieChartModel Maschine1) {
+        this.Maschine1 = Maschine1;
+    }
+
+    public PieChartModel getMaschine2() {
+        return Maschine2;
+    }
+
+    public void setMaschine2(PieChartModel Maschine2) {
+        this.Maschine2 = Maschine2;
+    }
+
+    public PieChartModel getMaschine3() {
+        return Maschine3;
+    }
+
+    public void setMaschine3(PieChartModel Maschine3) {
+        this.Maschine3 = Maschine3;
+    }
+
+    public PieChartModel getMaschine4() {
+        return Maschine4;
+    }
+
+    public void setMaschine4(PieChartModel Maschine4) {
+        this.Maschine4 = Maschine4;
+    }
+
+    public PieChartModel getMaschine5() {
+        return Maschine5;
+    }
+
+    public void setMaschine5(PieChartModel Maschine5) {
+        this.Maschine5 = Maschine5;
+    }
+    
      private void createLineModels() {
          
         Random rand = new Random();
@@ -152,6 +209,85 @@ public class ChartView implements Serializable {
         yAxis.setMax(8);
     }
     
+    
+    private PieChartModel createMaschineOnePieModel()
+    {
+        
+        double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMaschineA()));
+        Maschine1 = new PieChartModel();  
+        Maschine1.set("Restwaschzeit", 100-laufzeit);
+        Maschine1.set("Waschzeit", laufzeit);
+        Maschine1.setLegendPosition("s");
+        Maschine1.setFill(true);
+        Maschine1.setShowDataLabels(true);
+        Maschine1.setDiameter(100);
+        return null;
+        
+    }
+    
+    private PieChartModel createMaschineTwoPieModel()
+    {
+       double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineB()));
+        
+        
+        Maschine2 = new PieChartModel();  
+        Maschine2.set("Restwaschzeit", 100-laufzeit);
+        Maschine2.set("Waschzeit", laufzeit);
+        Maschine2.setLegendPosition("s");
+        Maschine2.setFill(true);
+        Maschine2.setShowDataLabels(true);
+        Maschine2.setDiameter(100);
+        return null;
+        
+    }
+    
+    private PieChartModel createMaschineThreePieModel()
+    {
+        double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineC()));
+        
+        
+        Maschine3 = new PieChartModel();  
+        Maschine3.set("Restwaschzeit", 100-laufzeit);
+        Maschine3.set("Waschzeit", laufzeit);
+        Maschine3.setLegendPosition("s");
+        Maschine3.setFill(true);
+        Maschine3.setShowDataLabels(true);
+        Maschine3.setDiameter(100);
+        return null;
+        
+    }
+    
+    private PieChartModel createMaschineFourPieModel()
+    {
+        double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineD()));
+        
+        Maschine4 = new PieChartModel();  
+        Maschine4.set("Restwaschzeit", 100-laufzeit);
+        Maschine4.set("Waschzeit", laufzeit);
+        Maschine4.setLegendPosition("s");
+        Maschine4.setFill(true);
+        Maschine4.setShowDataLabels(true);
+        Maschine4.setDiameter(100);
+        return null;
+    }
+    
+    private PieChartModel createMaschineFivePieModel()
+    {
+        
+       double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineE()));
+        
+        Maschine5 = new PieChartModel();  
+        Maschine5.set("Restwaschzeit", 100-laufzeit);
+        Maschine5.set("Waschzeit", laufzeit);
+        Maschine5.setLegendPosition("s");
+        Maschine5.setFill(true);
+        Maschine5.setShowDataLabels(true);
+        Maschine5.setDiameter(100);
+        return null;
+    }
+    
+    
+    
     private HorizontalBarChartModel createHorizontalBarModel() { 
         
         
@@ -159,74 +295,77 @@ public class ChartView implements Serializable {
      horizontalBarModel = new HorizontalBarChartModel();
         ChartSeries boys = new ChartSeries();
         ChartSeries girls = new ChartSeries();
-            int  WDA110 = testBean.getMaschine1();
-           if(testBean.getMaschine1()<=30)
+            double  WDA110 = testBean.getMaschine1();
+           if(testBean.getMaschine1()<=100)
            {
-               WDA110++;
-         testBean.setMaschine1(testBean.getMaschine1()+1);
+               WDA110 = WDA110 + 0.01;
+         testBean.setMaschine1(WDA110);
            }
            else
            {
                testBean.setMaschine1(0);
            }
            
-           int  EX200P = testBean.getMaschine2();
-           if(testBean.getMaschine2()<=1200)
+           double  EX200P = testBean.getMaschine2();
+           if(testBean.getMaschine2()<=100)
            {
-               EX200P++;
-         testBean.setMaschine2(testBean.getMaschine2()+1);
+               EX200P= EX200P+ 0.001;
+               testBean.setMaschine2(EX200P);
            }
            else
            {
                testBean.setMaschine2(0);
            }
            
-           int  WDA1101 = testBean.getMaschine3();
-           if(testBean.getMaschine3()<=150)
+           double  WDA1101 = testBean.getMaschine3();
+           if(testBean.getMaschine3()<=100)
            {
-               WDA1101++;
-         testBean.setMaschine3(testBean.getMaschine3()+1);
+               WDA1101= WDA1101+ 0.01;
+            testBean.setMaschine3(WDA1101);
            }
            else
            {
+               
                testBean.setMaschine3(0);
            }
            
-            int  EDF800 = testBean.getMaschine4();
-           if(testBean.getMaschine4()<=30)
+           double  EDF800 = testBean.getMaschine4();
+           if(testBean.getMaschine4()<=100)
            {
-               EDF800++;
-         testBean.setMaschine4(testBean.getMaschine4()+1);
+               EDF800 = EDF800 + 0.1;
+         testBean.setMaschine4(EDF800);
            }
            else
            {
                testBean.setMaschine4(0);
            }
-           int  KP_233 = testBean.getMaschine5();
-           if(testBean.getMaschine5()<=50)
+           
+           double  KP_233 = testBean.getMaschine5();
+           if(testBean.getMaschine5()<=100)
            {
                KP_233++;
-         testBean.setMaschine5(testBean.getMaschine5()+1);
+         testBean.setMaschine5(KP_233);
            }
            else
            {
+               FacesContext context = FacesContext.getCurrentInstance();
                testBean.setMaschine5(0);
            }
         
         boys.setLabel("Laufzeit");
         boys.set("WDA110", WDA110);
         boys.set("EX200P", EX200P);
-        boys.set("WDA110", WDA1101);
+        boys.set("WDA1101", WDA1101);
         boys.set("EDF800", EDF800);
         boys.set("KP/233", KP_233);
  
         
         girls.setLabel("Verbleibende Laufzeit");
-        girls.set("WDA110", 30-WDA110);
-        girls.set("EX200P", 1200-EX200P);
-        girls.set("WDA110", 150-WDA1101);
-        girls.set("EDF800", 30-EDF800);
-        girls.set("KP/233", 50-KP_233);
+        girls.set("WDA110", 100-WDA110);
+        girls.set("EX200P", 100-EX200P);
+        girls.set("WDA1101", 100-WDA1101);
+        girls.set("EDF800", 100-EDF800);
+        girls.set("KP/233", 100-KP_233);
  
         horizontalBarModel.addSeries(boys);
         horizontalBarModel.addSeries(girls);
@@ -237,7 +376,7 @@ public class ChartView implements Serializable {
         Axis xAxis = horizontalBarModel.getAxis(AxisType.Y);
         xAxis.setLabel("Maschinen");
         xAxis.setMin(0);
-        xAxis.setMax(1200);
+        xAxis.setMax(110);
          
         Axis yAxis = horizontalBarModel.getAxis(AxisType.X);
         yAxis.setLabel("Laufzeit in %");
@@ -304,6 +443,12 @@ public class ChartView implements Serializable {
     private void createPieModels() {
         createPieModel1();
         createPieModel2();
+        createMaschineOnePieModel();
+        createMaschineTwoPieModel();
+        createMaschineThreePieModel();
+        createMaschineFourPieModel();
+        createMaschineFivePieModel();
+        
     }
  
     private void createPieModel1() {
@@ -319,7 +464,6 @@ public class ChartView implements Serializable {
          
         pieModel1.set("Restwaschzeit", 100-n);
         pieModel1.set("Waschzeit", n);
-        pieModel1.setTitle("Laufzeit "+Stunden+":"+minuten+":"+sekunden);
         pieModel1.setLegendPosition("e");
         pieModel1.setFill(true);
         pieModel1.setShowDataLabels(true);

@@ -6,18 +6,9 @@
 package de.hsos.im.iwash.ui.Controller;
 
 import javax.inject.Named;
-import javax.annotation.PostConstruct;
 import java.io.Serializable;
-import java.time.Clock;
 import javax.enterprise.inject.Model;
-import javax.faces.bean.ManagedBean;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.CategoryAxis;
-import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.LineChartSeries;
+
 
 /**
  *
@@ -31,7 +22,11 @@ public class DashboardUIController implements Serializable{
     }
      public String goToPerfectWash() {
         return "perfect_wash.xhtml?faces-redirect=true";
-    }  
+    } 
+     
+     public String goToOverview() {
+        return "overview.xhtml?faces-redirect=true";
+    }
     
      public String goToSupport(){
          return "support.xhtml?faces-redirect=true";

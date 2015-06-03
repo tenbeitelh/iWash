@@ -7,14 +7,12 @@ package de.hsos.im.iwash.ui.Controller;
 
 import java.io.Serializable;
 import javax.enterprise.context.ApplicationScoped;
-
 /**
  *
  * @author Ace
  */
 @ApplicationScoped
-public class ChartSessionBean implements Serializable{
-    
+public class PieSessionBean implements Serializable{
     private double Maschine1 = 1;
     private double Maschine2 = 1;
     private double Maschine3 = 1;
@@ -60,7 +58,7 @@ public class ChartSessionBean implements Serializable{
     public void setMaschine5(double Maschine5) {
         this.Maschine5 = Maschine5;
     }
-    
-    public ChartSessionBean() {
-    }    
+
+    public PieSessionBean() {
+    }
 }
