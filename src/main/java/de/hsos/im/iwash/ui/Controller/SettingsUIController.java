@@ -45,6 +45,9 @@ public class SettingsUIController {
         initEmpStringMap();
         createTestMachineDate();
         initMachStringMap();
+        
+        this.telephone = this.empMap.get("Walter").getTelephone();
+        this.eMail = this.empMap.get("Walter").geteMail();
     }
 
     public void onMachineChange() {
