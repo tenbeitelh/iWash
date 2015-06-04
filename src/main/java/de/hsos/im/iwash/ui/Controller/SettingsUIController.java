@@ -24,14 +24,19 @@ public class SettingsUIController {
 
     private Map<String, String> employeeMap;
     private Map<String, Employee> empMap;
+    private Map<String, String> supplierMap;
+    private Map<String, String> goodsMap;
 
     private String machineName;
     private String employeeName;
+    private String supplierName;
+    private String good;
 
     private String eMail = "";
     private String telephone = "";
 
     private boolean notification = true;
+    private boolean order = true;
 
     /**
      * Creates a new instance of SettingsUIController
@@ -45,27 +50,30 @@ public class SettingsUIController {
         initEmpStringMap();
         createTestMachineDate();
         initMachStringMap();
-        
+        setupSupplierMap();
+        setupGoodsMap();
+
+        this.employeeName = "Walter";
         this.telephone = this.empMap.get("Walter").getTelephone();
         this.eMail = this.empMap.get("Walter").geteMail();
     }
 
     public void onMachineChange() {
-
+        this.employeeName = "Walter";
+        this.telephone = this.empMap.get("Walter").getTelephone();
+        this.eMail = this.empMap.get("Walter").geteMail();
         this.notification = this.settingsMap.get(this.machineName).isNotification();
 
-        System.out.println(this.notification);
-        System.out.println(machineName);
     }
 
     public void onEmployeeChange() {
-        System.out.println(this.eMail);
-        System.out.println(this.telephone);
         this.eMail = this.empMap.get(employeeName).geteMail();
         this.telephone = this.empMap.get(employeeName).getTelephone();
-        System.out.println(employeeName);
-        System.out.println(this.eMail);
-        System.out.println(this.telephone);
+    }
+    
+    public void onOrderChange(){
+        System.out.println("Order changed");
+        this.order = this.order;
     }
 
     public Map<String, String> getMachineMap() {
@@ -140,6 +148,46 @@ public class SettingsUIController {
         this.notification = notification;
     }
 
+    public Map<String, String> getSupplierMap() {
+        return supplierMap;
+    }
+
+    public void setSupplierMap(Map<String, String> supplierMap) {
+        this.supplierMap = supplierMap;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    public Map<String, String> getGoodsMap() {
+        return goodsMap;
+    }
+
+    public void setGoodsMap(Map<String, String> goodsMap) {
+        this.goodsMap = goodsMap;
+    }
+
+    public String getGood() {
+        return good;
+    }
+
+    public void setGood(String good) {
+        this.good = good;
+    }
+
+    public boolean isOrder() {
+        return order;
+    }
+
+    public void setOrder(boolean order) {
+        this.order = order;
+    }
+
     private void createTestEmployeeData() {
         this.empMap = new HashMap<>();
         this.empMap.put("Walter", new Employee("Walter", "walter@company.com", "123455123132"));
@@ -166,6 +214,26 @@ public class SettingsUIController {
         for (String key : this.settingsMap.keySet()) {
             this.machineMap.put(key, key);
         }
+    }
+
+    private void setupSupplierMap() {
+        this.supplierMap = new HashMap<>();
+        this.supplierMap.put("Miele", "Miele");
+        this.supplierMap.put("Amazon", "Amazon");
+        this.supplierMap.put("Otto", "Otto");
+        this.supplierMap.put("Bosch", "Bosch");
+    }
+
+    private void setupGoodsMap() {
+        this.goodsMap = new HashMap<>();
+        this.goodsMap.put("WA UP1 1501 L Kartusche UltraPhase 1, 1,5 l", "WA UP1 1501 L Kartusche UltraPhase 1, 1,5 l");
+        this.goodsMap.put("WA UP2 1501 L Kartusche UltraPhase 2, 1,5 l", "WA UP2 1501 L Kartusche UltraPhase 2, 1,5 l");
+        this.goodsMap.put("WA CP5 1503 L Kartusche UltraPhase 3, 8,5 l", "WA CP5 1503 L Kartusche UltraPhase 3, 8,5 l");
+        this.goodsMap.put("WA LP3 1504 L Kartusche UltraPhase 4, 5,5 l", "WA LP3 1504 L Kartusche UltraPhase 4, 5,5 l");
+        this.goodsMap.put("WA PP1 1588 L Kartusche UltraPhase 5, 2,5 l", "WA PP1 1588 L Kartusche UltraPhase 5, 2,5 l");
+        this.goodsMap.put("WA KP2 1587 L Kartusche UltraPhase 6, 3,5 l", "WA KP2 1587 L Kartusche UltraPhase 6, 3,5 l");
+        this.goodsMap.put("WA MP5 1593 L Kartusche MediumPhase 7, 7,5 l", "WA MP5 1593 L Kartusche MediumPhase 7, 7,5 l");
+        this.goodsMap.put("WA NP3 1564 L Kartusche MegaPhase 8, 8,5 l", "WA NP3 1564 L Kartusche MegaPhase 8, 8,5 l");
     }
 
     private class Employee {
