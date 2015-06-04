@@ -10,31 +10,22 @@ import de.hsos.im.iwash.model.WasherService;
 import de.hsos.im.iwash.model.WashProcess;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-import javax.ejb.Stateless;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Model;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import org.primefaces.context.RequestContext;
  
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.BarChartSeries;
-import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.HorizontalBarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 /**
  *
@@ -53,6 +44,22 @@ public class ChartView implements Serializable {
     private PieChartModel pieModel2;
     private HorizontalBarChartModel horizontalBarModel;
     private LineChartModel lineModel2;
+    private boolean flagA = false;
+    private String readyA;
+    private boolean flagB = false;
+    private String readyB;
+    private boolean flagC = false;
+    private String readyC;
+    private boolean flagD = false;
+    private String readyD;
+    private boolean flagE = false;
+    private String readyE;
+    
+    
+    private boolean tmpA = false;
+    
+    
+    
     
     @Inject
     ChartSessionBean testBean;
@@ -81,6 +88,90 @@ public class ChartView implements Serializable {
         return lineModel2;
     }
 
+    public boolean isFlagB() {
+        return flagB;
+    }
+
+    public boolean isTmpA() {
+        return tmpA;
+    }
+
+    public void setTmpA(boolean tmpA) {
+        this.tmpA = tmpA;
+    }
+    
+    
+    
+
+    public void setFlagB(boolean flagB) {
+        this.flagB = flagB;
+    }
+
+    public String getReadyB() {
+        return readyB;
+    }
+
+    public void setReadyB(String readyB) {
+        this.readyB = readyB;
+    }
+
+    public boolean isFlagC() {
+        return flagC;
+    }
+
+    public void setFlagC(boolean flagC) {
+        this.flagC = flagC;
+    }
+
+    public String getReadyC() {
+        return readyC;
+    }
+
+    public void setReadyC(String readyC) {
+        this.readyC = readyC;
+    }
+
+    public boolean isFlagD() {
+        return flagD;
+    }
+
+    public void setFlagD(boolean flagD) {
+        this.flagD = flagD;
+    }
+
+    public String getReadyD() {
+        return readyD;
+    }
+
+    public void setReadyD(String readyD) {
+        this.readyD = readyD;
+    }
+
+    public boolean isFlagE() {
+        return flagE;
+    }
+
+    public void setFlagE(boolean flagE) {
+        this.flagE = flagE;
+    }
+
+    public String getReadyE() {
+        return readyE;
+    }
+
+    public void setReadyE(String readyE) {
+        this.readyE = readyE;
+    }
+    public boolean isFlagA() {
+        return flagA;
+    }
+
+    public void setFlagA(boolean flagA) {
+        this.flagA = flagA;
+    }
+
+     
+     
     public PieChartModel getMaschine1() {
         return Maschine1;
     }
@@ -208,12 +299,32 @@ public class ChartView implements Serializable {
         yAxis.setMin(0);
         yAxis.setMax(8);
     }
+
+    public String getReadyA() {
+        return readyA;
+    }
+
+    public void setReadyA(String readyA) {
+        this.readyA = readyA;
+    }
+    
+    
     
     
     private PieChartModel createMaschineOnePieModel()
     {
         
-        double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMaschineA()));
+        double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMaschineA())); 
+        
+        if(laufzeit < 100)
+        {
+            readyA = "In Arbeit";
+        }
+        else{
+             readyA = "Fertig";
+             flagA = true;
+        }
+        
         Maschine1 = new PieChartModel();  
         Maschine1.set("Restwaschzeit", 100-laufzeit);
         Maschine1.set("Waschzeit", laufzeit);
@@ -229,6 +340,14 @@ public class ChartView implements Serializable {
     {
        double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineB()));
         
+       if(laufzeit < 100)
+        {
+            readyB = "In Arbeit";
+        }
+        else{
+             readyB = "Fertig";
+             flagB = true;
+        }
         
         Maschine2 = new PieChartModel();  
         Maschine2.set("Restwaschzeit", 100-laufzeit);
@@ -245,7 +364,14 @@ public class ChartView implements Serializable {
     {
         double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineC()));
         
-        
+         if(laufzeit < 100)
+        {
+            readyC = "In Arbeit";
+        }
+        else{
+             readyC = "Fertig";
+             flagC = true;
+        }
         Maschine3 = new PieChartModel();  
         Maschine3.set("Restwaschzeit", 100-laufzeit);
         Maschine3.set("Waschzeit", laufzeit);
@@ -261,6 +387,15 @@ public class ChartView implements Serializable {
     {
         double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineD()));
         
+         if(laufzeit < 100)
+        {
+            readyD = "In Arbeit";
+        }
+        else{
+             readyD = "Fertig";
+             flagD = true;
+        }
+        
         Maschine4 = new PieChartModel();  
         Maschine4.set("Restwaschzeit", 100-laufzeit);
         Maschine4.set("Waschzeit", laufzeit);
@@ -275,7 +410,16 @@ public class ChartView implements Serializable {
     {
         
        double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineE()));
-        
+        if(laufzeit < 100)
+        {
+            readyE = "In Arbeit";
+        }
+        else{
+             readyE = "Fertig";
+             flagE = true;
+        } 
+       
+       
         Maschine5 = new PieChartModel();  
         Maschine5.set("Restwaschzeit", 100-laufzeit);
         Maschine5.set("Waschzeit", laufzeit);

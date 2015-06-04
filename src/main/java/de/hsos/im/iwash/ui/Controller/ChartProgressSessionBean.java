@@ -32,7 +32,7 @@ public class ChartProgressSessionBean implements Serializable {
             this.ProgressMaschineA++;
         }
         else
-            this.ProgressMaschineA = 0;
+            this.ProgressMaschineA = 100;
         
         this.ProgressMaschineA = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", this.ProgressMaschineA));
         

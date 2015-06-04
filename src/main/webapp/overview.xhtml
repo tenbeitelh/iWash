@@ -13,7 +13,7 @@
             xmlns:h="http://java.sun.com/jsf/html"/>
     <h:head>
         <title>iWash</title>
-        
+
         <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/themes/miele.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/themes/jquery.mobile.icons.min.css" />
         <link rel="stylesheet" href="#{request.contextPath}/css/style.css" />
@@ -27,11 +27,11 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script>
-            function foo () {
-             alert("check")
-        }
+            function foo() {
+                alert("check")
+            }
         </script>
-        
+
         <style>
             .carousel-inner > .item > img,
             .carousel-inner > .item > a > img {
@@ -46,11 +46,11 @@
                 <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
             </f:facet>       
             <pm:header> 
-               <p:panelGrid columns="2" style="width: 100%">
-                      
-                   <p:commandLink action="#{dashboardUIController.goToIndex()}">
-            <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
-    </p:commandLink>
+                <p:panelGrid columns="2" style="width: 100%">
+
+                    <p:commandLink action="#{dashboardUIController.goToIndex()}">
+                        <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
+                    </p:commandLink>
                     <h:outputText value="iWash" styleClass="header-text"/>
                 </p:panelGrid>
             </pm:header> 
@@ -60,35 +60,57 @@
 
                     <p:panel header="Dashboard" id="votes">
                         <p:panelGrid columns="2" style="width: 100%">
-                            
-                            
-                            
-                            <p:panel header="Maschine 1: WDA110">
-                            <p:column style="width: 100%; margin-left: 10%;">
-                                <h:form>
-                                    <p:panelGrid columns="2" style="width: 100%">
-                                        <p:column>
-                                            <p:chart type="pie" model="#{chartView.maschine1}" style="width:90%;height:90%" />
-                                        </p:column>
-                                        <p:column>
-                                         <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: WDA110</p:outputLabel>
-                                            <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
-                                            <p:outputLabel>Fortschritt: #{chartProgressModelBean.progressMaschineA}%
-                                            </p:outputLabel>
-                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
-                                            <p:outputLabel style="color: red;">Temperatur: 20°C</p:outputLabel>
-                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
-                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>    
-                                        </p:column>
-                                    </p:panelGrid>
-                                </h:form>
 
-                            </p:column> 
-                    </p:panel>
+
+
+                            <p:panel header="Maschine 1: WDA110">
+                                <p:column style="width: 100%; margin-left: 10%;">
+                                    <h:form>
+                                        <p:panelGrid columns="2" style="width: 100%">
+                                            <p:column>
+                                                <p:chart type="pie" model="#{chartView.maschine1}" style="width:90%;height:90%" />
+                                            </p:column>
+                                            <p:column>
+                                                <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: WDA110</p:outputLabel>
+                                                <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
+                                                <p:outputLabel rendered="#{!chartView.flagA}">Fortschritt: #{chartProgressModelBean.progressMaschineA}%
+                                                </p:outputLabel>
+                                                <p:outputLabel rendered="#{chartView.flagA}">Fortschritt: -
+                                                </p:outputLabel>
+                                                <p:outputLabel rendered="#{chartView.flagA}">Waschprogramme: -</p:outputLabel>
+                                                <p:outputLabel rendered="#{!chartView.flagA}">Waschprogramme: Perfect Wash</p:outputLabel>
+
+                                                <p:panelGrid columns="2" style="width: 100%">
+                                                    <p:column>
+                                                        <p:outputLabel style="color: red;" rendered="#{!chartView.flagA}">Temperatur: #{overviewModelBean.tmpMA}°C</p:outputLabel>
+                                                        <p:outputLabel style="color: green;" rendered="#{chartView.flagA}">Temperatur: 0°C</p:outputLabel>
+                                                    </p:column>
+                                                    <p:column>
+                                                        <p:graphicImage rendered="#{overviewModelBean.flagA}" value="/Images/Pfeil_rechts_oben_gruen.png" style=" -moz-transform: rotate(172deg);
+                                                                        -ms-transform: rotate(172deg);
+                                                                        -o-transform: rotate(172deg);
+                                                                        -webkit-transform: rotate(172deg);
+                                                                        transform: rotate(172deg); height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>
+
+                                                        <p:graphicImage rendered="#{!overviewModelBean.flagA}" value="/Images/Pfeil_rechts_oben_rot.png" style="height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>                                                           
+                                                    </p:column>
+                                                </p:panelGrid>
+
+                                                <p:outputLabel rendered="#{chartView.flagA}">Reinigung: 0%</p:outputLabel>
+                                                <p:outputLabel rendered="#{!chartView.flagA}">Reinigung: 87%</p:outputLabel>
+                                                <p:outputLabel style="color: green" rendered="#{chartView.flagA}">Zustand: #{chartView.readyA}!</p:outputLabel>
+                                                <p:outputLabel style="color: red" rendered="#{!chartView.flagA}">Zustand: #{chartView.readyA}!</p:outputLabel>
+                                                <p:graphicImage rendered="#{chartView.flagA}" value="/Images/pfeil_unten.png" style="height: 10%; width: 10%; margin-left: 80%;"></p:graphicImage>
+
+                                            </p:column>
+                                        </p:panelGrid>
+                                    </h:form>
+
+                                </p:column> 
+                            </p:panel>
                             <p:column style="width: 80%">
                                 <p:panel header="Maschine 2: EX200P" style="margin-left: 5px">
-                          
-                          <p:panelGrid columns="2" style="width: 100%">
+                                    <p:panelGrid columns="2" style="width: 100%">
                                         <p:column>
                                             <p:chart type="pie" model="#{chartView.maschine2}" style="width:90%;height:90%" />
                                         </p:column>
@@ -97,83 +119,169 @@
                                             <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
                                             <p:outputLabel>
                                                 Fortschritt: #{chartProgressModelBean.progressMAschineB}%</p:outputLabel>
-                                            
-                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
-                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
-                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
-                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>
+                                            <p:column>
+                                            <p:outputLabel rendered="#{chartView.flagB}">Waschprogramme: -</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagB}">Waschprogramme: Ultra Wash</p:outputLabel>
+                                            </p:column>
+                                            <p:panelGrid columns="2" style="width: 100%">
+                                            <p:column>
+                                                <p:outputLabel style="color: red;" rendered="#{!chartView.flagB}">Temperatur: #{overviewModelBean.tmpMB}°C</p:outputLabel>
+                                                <p:outputLabel style="color: green;" rendered="#{chartView.flagB}">Temperatur: 0°C</p:outputLabel>
+                                            </p:column>
+                                                <p:column>
+                                                <p:graphicImage rendered="#{overviewModelBean.flagB}" value="/Images/Pfeil_rechts_oben_gruen.png" style=" -moz-transform: rotate(172deg);
+                                                                -ms-transform: rotate(172deg);
+                                                                -o-transform: rotate(172deg);
+                                                                -webkit-transform: rotate(172deg);
+                                                                transform: rotate(172deg); height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>
+
+                                                <p:graphicImage rendered="#{!overviewModelBean.flagB}" value="/Images/Pfeil_rechts_oben_rot.png" style="height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>                                                           
+                                            </p:column>
+
+                                            </p:panelGrid>
+
+
+                                            <p:outputLabel rendered="#{chartView.flagB}">Reinigung: 0%</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagB}">Reinigung: 87%</p:outputLabel>
+
+                                            <p:outputLabel style="color: green" rendered="#{chartView.flagB}">Zustand: #{chartView.readyB}!</p:outputLabel>
+                                            <p:outputLabel style="color: red" rendered="#{!chartView.flagB}">Zustand: #{chartView.readyB}!</p:outputLabel>
+
                                         </p:column>
                                     </p:panelGrid>
-                          
-                          
-                          </p:panel>
+
+
+                                </p:panel>
                             </p:column>
                         </p:panelGrid>
-                        
+
                         <p:panelGrid columns="2" style="width: 100%">
                             <p:column style="width: 80%">
                                 <p:panel header="Maschine 3: WDA1101" style="margin-top: 5px;">
-                                <p:panelGrid columns="2" style="width: 100%">
+                                    <p:panelGrid columns="2" style="width: 100%">
                                         <p:column>
                                             <p:chart type="pie" model="#{chartView.maschine3}" style="width:90%;height:90%" />
                                         </p:column>
                                         <p:column>
-                                             <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: WDA1101</p:outputLabel>
+                                            <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: WDA1101</p:outputLabel>
                                             <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
                                             <p:outputLabel>
                                                 Fortschritt: #{chartProgressModelBean.progressMAschineC}%</p:outputLabel>
-                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
-                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
-                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
-                                            <p:outputLabel>Zustand: In Arbeit!</p:outputLabel>
+                                            <p:outputLabel rendered="#{chartView.flagC}">Waschprogramme: -</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagC}">Waschprogramme: Standard A</p:outputLabel>
+                                            <p:panelGrid columns="2" style="width: 100%">
+                                            <p:column>
+                                                <p:outputLabel style="color: red;" rendered="#{!chartView.flagC}">Temperatur: #{overviewModelBean.tmpMC}°C</p:outputLabel>
+                                                <p:outputLabel style="color: green;" rendered="#{chartView.flagC}">Temperatur: 0°C</p:outputLabel>
+                                            </p:column>
+                                            <p:column>
+                                                <p:graphicImage rendered="#{overviewModelBean.flagC}" value="/Images/Pfeil_rechts_oben_gruen.png" style=" -moz-transform: rotate(172deg);
+                                                                -ms-transform: rotate(172deg);
+                                                                -o-transform: rotate(172deg);
+                                                                -webkit-transform: rotate(172deg);
+                                                                transform: rotate(172deg); height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>
+                                                <p:graphicImage rendered="#{!overviewModelBean.flagC}" value="/Images/Pfeil_rechts_oben_rot.png" style="height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>                                                           
+                                            </p:column>
+
+                                            </p:panelGrid>
+
+
+
+                                            <p:outputLabel rendered="#{chartView.flagC}">Reinigung: 0%</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagC}">Reinigung: 87%</p:outputLabel>
+
+                                            <p:outputLabel style="color: green" rendered="#{chartView.flagC}">Zustand: #{chartView.readyC}!</p:outputLabel>
+                                            <p:outputLabel style="color: red" rendered="#{!chartView.flagC}">Zustand: #{chartView.readyC}!</p:outputLabel>
+
                                         </p:column>
                                     </p:panelGrid>
-                            
-                            </p:panel>
+
+                                </p:panel>
                             </p:column>
-                            
+
                             <p:column style="width: 80%; margin-left: 40%; margin-top: 2%">
                                 <p:panel header="Maschine 4: EDF800" style="margin-left: 5px; margin-top: 5px;">
-                            <p:panelGrid columns="2" style="width: 100%">
+                                    <p:panelGrid columns="2" style="width: 100%">
                                         <p:column>
                                             <p:chart type="pie" model="#{chartView.maschine4}" style="width:90%;height:90%"/>
                                         </p:column>
                                         <p:column>
-                                             <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: EDF800</p:outputLabel>
+                                            <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: EDF800</p:outputLabel>
                                             <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
                                             <p:outputLabel>
                                                 Fortschritt: #{chartProgressModelBean.progressMAschineD}%</p:outputLabel>
                                             
-                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
-                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
-                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
-                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>
+                                            <p:outputLabel rendered="#{chartView.flagD}">Waschprogramme: -</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagD}">Waschprogramme: Standard C</p:outputLabel>
+
+                                            <p:panelGrid columns="2" style="width: 100%">
+                                            <p:column>
+                                                <p:outputLabel style="color: red;" rendered="#{!chartView.flagD}">Temperatur: #{overviewModelBean.tmpMD}°C</p:outputLabel>
+                                                <p:outputLabel style="color: green;" rendered="#{chartView.flagD}">Temperatur: 0°C</p:outputLabel>
+                                            </p:column>
+                                            <p:column>
+                                                <p:graphicImage rendered="#{overviewModelBean.flagD}" value="/Images/Pfeil_rechts_oben_gruen.png" style=" -moz-transform: rotate(172deg);
+                                                                -ms-transform: rotate(172deg);
+                                                                -o-transform: rotate(172deg);
+                                                                -webkit-transform: rotate(172deg);
+                                                                transform: rotate(172deg); height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>
+
+                                                <p:graphicImage rendered="#{!overviewModelBean.flagD}" value="/Images/Pfeil_rechts_oben_rot.png" style="height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>                                                           
+                                            </p:column>
+
+                                            </p:panelGrid>
+                                            <p:outputLabel rendered="#{chartView.flagD}">Reinigung: 0%</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagD}">Reinigung: 87%</p:outputLabel>
+                                            <p:outputLabel style="color: green" rendered="#{chartView.flagD}">Zustand: #{chartView.readyD}!</p:outputLabel>
+                                            <p:outputLabel style="color: red" rendered="#{!chartView.flagD}">Zustand: #{chartView.readyD}!</p:outputLabel>
+
                                         </p:column>
                                     </p:panelGrid>
-                                
-                            </p:panel>
+
+                                </p:panel>
                             </p:column>
                         </p:panelGrid>
                         <p:panelGrid columns="2" style="width: 100%">
                             <p:column style="width: 80%">
                                 <p:panel header="Maschine 5: KP/233" style="margin-top: 5px;">
-                            <p:panelGrid columns="2" style="width: 100%">
+                                    <p:panelGrid columns="2" style="width: 100%">
                                         <p:column>
                                             <p:chart type="pie" model="#{chartView.maschine5}" style="width:90%;height:90%" />
                                         </p:column>
                                         <p:column>
-                                             <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: KP/233</p:outputLabel>
+                                            <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: KP/233</p:outputLabel>
                                             <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
                                             <p:outputLabel>
                                                 Fortschritt: #{chartProgressModelBean.progressMAschineE}%</p:outputLabel>
-                                            
-                                            <p:outputLabel>Waschprogramme: A</p:outputLabel>
-                                            <p:outputLabel style="color: red">Temperatur: 20°C</p:outputLabel>
-                                            <p:outputLabel>Reinigung: 50%</p:outputLabel>
-                                            <p:outputLabel>Zustand: fertig!°C</p:outputLabel>
+                                             
+                                            <p:outputLabel rendered="#{chartView.flagE}">Waschprogramme: -</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagE}">Waschprogramme: Standard A</p:outputLabel>
+
+                                            <p:panelGrid columns="2" style="width: 100%">
+                                            <p:column>
+                                                <p:outputLabel style="color: red;" rendered="#{!chartView.flagE}">Temperatur: #{overviewModelBean.tmpME}°C</p:outputLabel>
+                                                <p:outputLabel style="color: green;" rendered="#{chartView.flagE}">Temperatur: 0°C</p:outputLabel>
+                                            </p:column>
+                                            <p:column>
+                                                <p:graphicImage rendered="#{overviewModelBean.flagE}" value="/Images/Pfeil_rechts_oben_gruen.png" style=" -moz-transform: rotate(172deg);
+                                                                -ms-transform: rotate(172deg);
+                                                                -o-transform: rotate(172deg);
+                                                                -webkit-transform: rotate(172deg);
+                                                                transform: rotate(172deg); height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>
+
+                                                <p:graphicImage rendered="#{!overviewModelBean.flagE}" value="/Images/Pfeil_rechts_oben_rot.png" style="height: 10%; width: 10%; margin-left: 5%;"></p:graphicImage>                                                           
+                                            </p:column>
+
+                                            </p:panelGrid>
+
+                                            <p:outputLabel rendered="#{chartView.flagE}">Reinigung: 0%</p:outputLabel>
+                                            <p:outputLabel rendered="#{!chartView.flagE}">Reinigung: 87%</p:outputLabel>
+                                            <p:outputLabel style="color: green" rendered="#{chartView.flagE}">Zustand: #{chartView.readyE}!</p:outputLabel>
+                                            <p:outputLabel style="color: red" rendered="#{!chartView.flagE}">Zustand: #{chartView.readyE}!</p:outputLabel>
+
                                         </p:column>
                                     </p:panelGrid>   
-                            </p:panel>
+                                </p:panel>
                             </p:column>
                         </p:panelGrid>
                     </p:panel>

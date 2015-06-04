@@ -35,6 +35,10 @@ public class ChartProgressModelBean {
     public double getProgressMaschineA() {
         
         this.ProgressMaschineA = testBean.getProgressMaschineA();
+        if(this.ProgressMaschineA >=100)
+        {
+            this.ProgressMaschineA =100;
+        }
         return ProgressMaschineA;
     }
 
