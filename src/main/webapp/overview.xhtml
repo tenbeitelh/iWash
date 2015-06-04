@@ -70,20 +70,20 @@
                                             <p:column>
                                                 <p:chart type="pie" model="#{chartView.maschine1}" style="width:90%;height:90%" />
                                             </p:column>
-                                            <p:column>
-                                                <p:outputLabel style="margin-top: 10px; font-weight: bold">Model: WDA110</p:outputLabel>
-                                                <p:outputLabel>Verbleibende Zeit: 2:21:30</p:outputLabel>
-                                                <p:outputLabel rendered="#{!chartView.flagA}">Fortschritt: #{chartProgressModelBean.progressMaschineA}%
+                                            <p:column style="margin-left: 10%;">
+                                                <p:outputLabel style="margin-left: 10%;margin-top: 15px; font-weight: bold">Model: WDA110</p:outputLabel>
+                                                <p:outputLabel style="margin-left: 10%; margin-top: 5px">Verbleibende Zeit: 2:21:30</p:outputLabel>
+                                                <p:outputLabel style="margin-left: 10%" rendered="#{!chartView.flagA}">Fortschritt: #{chartProgressModelBean.progressMaschineA}%
                                                 </p:outputLabel>
-                                                <p:outputLabel rendered="#{chartView.flagA}">Fortschritt: -
+                                                <p:outputLabel style="margin-left: 10%" rendered="#{chartView.flagA}">Fortschritt: -
                                                 </p:outputLabel>
-                                                <p:outputLabel rendered="#{chartView.flagA}">Waschprogramme: -</p:outputLabel>
-                                                <p:outputLabel rendered="#{!chartView.flagA}">Waschprogramme: Perfect Wash</p:outputLabel>
+                                                <p:outputLabel style="margin-left: 10%" rendered="#{chartView.flagA}">Waschprogramme: -</p:outputLabel>
+                                                <p:outputLabel  style="margin-left: 10%" rendered="#{!chartView.flagA}">Waschprogramme: Perfect Wash</p:outputLabel>
 
                                                 <p:panelGrid columns="2" style="width: 100%">
                                                     <p:column>
-                                                        <p:outputLabel style="color: red;" rendered="#{!chartView.flagA}">Temperatur: #{overviewModelBean.tmpMA}°C</p:outputLabel>
-                                                        <p:outputLabel style="color: green;" rendered="#{chartView.flagA}">Temperatur: 0°C</p:outputLabel>
+                                                        <p:outputLabel style="color: red; margin-left: 20%;" rendered="#{!chartView.flagA}">Temperatur: #{overviewModelBean.tmpMA}°C</p:outputLabel>
+                                                        <p:outputLabel style="color: green;margin-left: 20%;" rendered="#{chartView.flagA}">Temperatur: 0°C</p:outputLabel>
                                                     </p:column>
                                                     <p:column>
                                                         <p:graphicImage rendered="#{overviewModelBean.flagA}" value="/Images/Pfeil_rechts_oben_gruen.png" style=" -moz-transform: rotate(172deg);
@@ -96,10 +96,10 @@
                                                     </p:column>
                                                 </p:panelGrid>
 
-                                                <p:outputLabel rendered="#{chartView.flagA}">Reinigung: 0%</p:outputLabel>
-                                                <p:outputLabel rendered="#{!chartView.flagA}">Reinigung: 87%</p:outputLabel>
-                                                <p:outputLabel style="color: green" rendered="#{chartView.flagA}">Zustand: #{chartView.readyA}!</p:outputLabel>
-                                                <p:outputLabel style="color: red" rendered="#{!chartView.flagA}">Zustand: #{chartView.readyA}!</p:outputLabel>
+                                                <p:outputLabel rendered="#{chartView.flagA}" style="margin-left: 10%">Reinigung: 0%</p:outputLabel>
+                                                <p:outputLabel rendered="#{!chartView.flagA}" style="margin-left: 10%">Reinigung: 87%</p:outputLabel>
+                                                <p:outputLabel style="color: green; margin-left: 10%"  rendered="#{chartView.flagA}">Zustand: #{chartView.readyA}!</p:outputLabel>
+                                                <p:outputLabel style="color: red; margin-left: 10%" rendered="#{!chartView.flagA}">Zustand: #{chartView.readyA}!</p:outputLabel>
                                                 <p:graphicImage rendered="#{chartView.flagA}" value="/Images/pfeil_unten.png" style="height: 10%; width: 10%; margin-left: 80%;"></p:graphicImage>
 
                                             </p:column>

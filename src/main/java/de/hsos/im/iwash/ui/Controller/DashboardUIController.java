@@ -25,6 +25,7 @@ public class DashboardUIController implements Serializable{
     } 
      
      public String goToOverview() {
+         System.out.println("gogogo");
         return "overview.xhtml?faces-redirect=true";
     }
     
@@ -36,7 +37,7 @@ public class DashboardUIController implements Serializable{
          System.out.println("check goToIndex");
          return "index.xhtml?faces-redirect=true";
      }
-     
+      
      public String goToSettings(){
          return "settings.xhtml?faces-redirect=true";
      }

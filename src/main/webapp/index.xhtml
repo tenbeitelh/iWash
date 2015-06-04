@@ -48,9 +48,9 @@
             <pm:header> 
                <p:panelGrid columns="2" style="width: 100%">
                       
-                   <p:commandLink action="#{dashboardUIController.goToIndex()}">
+                   <p:commandLink action="#{dashboardUIController.goToOverview()}">
             <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
-    </p:commandLink>
+                   </p:commandLink>
                     <h:outputText value="iWash" styleClass="header-text"/>
                 </p:panelGrid>
             </pm:header> 
@@ -62,7 +62,9 @@
                         <p:panelGrid columns="2" style="width: 100%">
                             <p:column style="width: 100%; margin-left: 10%;">
                                 <h:form>
-                                    <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
+                                    <p:commandLink action="#{dashboardUIController.goToOverview()}">
+                                        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
+                                        </p:commandLink>
                                 </h:form>
 
                             </p:column> 
