@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -54,11 +55,9 @@ public class ChartView implements Serializable {
     private String readyD;
     private boolean flagE = false;
     private String readyE;
-    
-    
     private boolean tmpA = false;
     
-    
+    ArrayList<ModelBean[]> liste=new ArrayList<ModelBean[]>();
     
     
     @Inject
@@ -99,10 +98,15 @@ public class ChartView implements Serializable {
     public void setTmpA(boolean tmpA) {
         this.tmpA = tmpA;
     }
-    
-    
-    
 
+    public ArrayList<ModelBean[]> getListe() {
+        return liste;
+    }
+
+    public void setListe(ArrayList<ModelBean[]> liste) {
+        this.liste = liste;
+    }
+    
     public void setFlagB(boolean flagB) {
         this.flagB = flagB;
     }
@@ -218,9 +222,9 @@ public class ChartView implements Serializable {
         int  c = rand.nextInt(3) + 0;
         supplier = new  ArrayList<>();
         supplier.add("Miele");
-        supplier.add("Amazon");
-        supplier.add("Otto");
-        supplier.add("Bosch");
+        supplier.add("mundizio");
+        supplier.add("wisch-star");
+        supplier.add("reinigungsberater");
         lineModel2 = initCategoryModel();
         lineModel2.setTitle("Verkaufspreisentwicklung Reinigungsmittel "+supplier.get(c));
         lineModel2.setLegendPosition("e");
@@ -321,7 +325,8 @@ public class ChartView implements Serializable {
             readyA = "In Arbeit";
         }
         else{
-             readyA = "Fertig";
+            
+            readyA = "Fertig";
              flagA = true;
         }
         
@@ -439,62 +444,26 @@ public class ChartView implements Serializable {
      horizontalBarModel = new HorizontalBarChartModel();
         ChartSeries boys = new ChartSeries();
         ChartSeries girls = new ChartSeries();
-            double  WDA110 = testBean.getMaschine1();
-           if(testBean.getMaschine1()<=100)
-           {
-               WDA110 = WDA110 + 0.01;
-         testBean.setMaschine1(WDA110);
-           }
-           else
-           {
-               testBean.setMaschine1(0);
-           }
+            
+            double WDA110 = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMaschineA()));           
+           double  EX200P = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineB()));           
            
-           double  EX200P = testBean.getMaschine2();
-           if(testBean.getMaschine2()<=100)
-           {
-               EX200P= EX200P+ 0.001;
-               testBean.setMaschine2(EX200P);
-           }
-           else
-           {
-               testBean.setMaschine2(0);
-           }
+          
            
-           double  WDA1101 = testBean.getMaschine3();
-           if(testBean.getMaschine3()<=100)
-           {
-               WDA1101= WDA1101+ 0.01;
-            testBean.setMaschine3(WDA1101);
-           }
-           else
-           {
-               
-               testBean.setMaschine3(0);
-           }
+           double  WDA1101 = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineC()));           
            
-           double  EDF800 = testBean.getMaschine4();
-           if(testBean.getMaschine4()<=100)
-           {
-               EDF800 = EDF800 + 0.1;
-         testBean.setMaschine4(EDF800);
-           }
-           else
-           {
-               testBean.setMaschine4(0);
-           }
+          
            
-           double  KP_233 = testBean.getMaschine5();
-           if(testBean.getMaschine5()<=100)
-           {
-               KP_233++;
-         testBean.setMaschine5(KP_233);
-           }
-           else
-           {
-               FacesContext context = FacesContext.getCurrentInstance();
-               testBean.setMaschine5(0);
-           }
+           
+           double  EDF800 = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineD()));           
+           
+          
+           
+           
+           double  KP_233 = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineE()));           
+           
+          
+           
         
         boys.setLabel("Laufzeit");
         boys.set("WDA110", WDA110);

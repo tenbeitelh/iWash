@@ -111,9 +111,13 @@ public class PerfectWashUIController {
 
     public void createLastWashProcesses() {
         this.lastWashProcesses = new ArrayList<WashProcess>();
-        WashProcess temp = new WashProcess("MachineId1", new Date(1999, 12, 10, 12, 12, 12), "1h", "Standard Modus", 0.97);
+        WashProcess temp = new WashProcess("WDA110", new Date(1999, 12, 10, 12, 12, 12), "1h", "Perfect Wash", 0.97);
         this.lastWashProcesses.add(temp);
-        temp = new WashProcess("MachineId2", new Date(1999, 12, 10, 18, 12, 12), "1,5h", "Erweiterter Modus", 0.90);
+        temp = new WashProcess("EX200P", new Date(1999, 12, 10, 18, 12, 12), "3,5h", "Ultimate A", 0.90);
+        this.lastWashProcesses.add(temp);
+        temp = new WashProcess("WDA1101", new Date(1999, 12, 10, 18, 12, 12), "2,5h", "Super B", 0.90);
+        this.lastWashProcesses.add(temp);
+        temp = new WashProcess("EDF800", new Date(1999, 12, 10, 18, 12, 12), "0,5h", "Ultimate A", 0.90);
         this.lastWashProcesses.add(temp);
     }
 

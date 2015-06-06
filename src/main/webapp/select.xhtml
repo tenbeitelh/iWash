@@ -41,45 +41,27 @@ and open the template in the editor.
                 </p:panelGrid>
             </pm:header> 
                 <pm:content>
-                    <p:panel header="Maschine">
-                        <p:selectOneMenu id="machine" value="#{settingsUIController.machineName}" style="width:150px">
-                            <f:selectItems value="#{settingsUIController.machineMap}" />
-                            <p:ajax process="@this" listener="#{settingsUIController.onMachineChange()}" update="switch" />
-                        </p:selectOneMenu>
-                    </p:panel>
-                    <p:panel header="">
+                    
+                    <p:panel header="Auswahl der Gerätesteuerung">
                         <p:panelGrid columns="2">
-                            <p:column>
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        Benachrichtigung
-                                    </div>
-                                </div>
+                            <p:panel header="Gerätesterung per Fernbedinung">
+                                <p:column><p:commandLink action="#{dashboardUIController.goToRemoteDesktop()}">
+                                    <p:graphicImage value="/Images/url.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 50%; margin-left: 25%"/>            
+                   </p:commandLink> 
                             </p:column>
-                            <p:column>
-                                <p:panelGrid columns="2">
-                                    <p:column>
-                                        <p:selectOneMenu id="emp" value="#{settingsUIController.employeeName}" style="width:150px">
-                                            <f:selectItems value="#{settingsUIController.employeeMap}" />
-                                            <p:ajax listener="#{settingsUIController.onEmployeeChange()}" update="mail, tel" />
-                                        </p:selectOneMenu>
-                                    </p:column>
-                                    <p:column>
-                                        <p:inputSwitch id="switch" value="#{settingsUIController.notification}"></p:inputSwitch>
-                                    </p:column>
+                            </p:panel>
+                            <p:panel header="Gerätesterung per Augmented Reality" style="margin-left: 2%; background-color: black">
+                                <p:column>
+                                    <a href="http://localhost:8080/iWash/faces/AR_mediaStream.html">
+    <p:graphicImage value="/Images/Augmented-Reality.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 60%; margin-left: 25%"/>            
+                   
+        </a>
                                     
-                                    <p:column>
-                                        <p:graphicImage value="/Images/mail.png"></p:graphicImage>
-                                        <p:outputLabel id="mail" value="#{settingsUIController.geteMail()}"></p:outputLabel>
-                                    </p:column>
-                                    <p:column>
-                                        <p:graphicImage value="/Images/telephone.png"></p:graphicImage>
-                                        <p:outputLabel id="tel" value="#{settingsUIController.telephone}"></p:outputLabel>
-                                    </p:column>
-                                </p:panelGrid>
                             </p:column>
+                            </p:panel>
                         </p:panelGrid>
                     </p:panel>
+                    
                 </pm:content>
                 <pm:footer title="iWash" style="position: fixed;width: 100%; bottom: 0px;"></pm:footer>
             </pm:page>

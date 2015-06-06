@@ -28,6 +28,20 @@ public class DashboardUIController implements Serializable{
          System.out.println("gogogo");
         return "overview.xhtml?faces-redirect=true";
     }
+     
+      public String goToSteuerung() {
+         System.out.println("gogogo");
+        return "select.xhtml?faces-redirect=true";
+    }
+      
+       public String goToRemoteDesktop() {
+         System.out.println("gogogo");
+        return "remote_desktop.xhtml?faces-redirect=true";
+    }
+       public String goToRemotestart() {
+         System.out.println("gogogo");
+        return "startMschine.xhtml?faces-redirect=true";
+    }
     
      public String goToSupport(){
          return "support.xhtml?faces-redirect=true";

@@ -70,6 +70,7 @@
                     <p:poll interval="3" update="votes" />
                     <p:panel header="Dashboard" id="votes">
                         <p:panelGrid columns="2" style="width: 100%">
+                            <p:commandLink action="#{dashboardUIController.goToRemotestart()}">
                             <p:panel header="Maschine 1: WDA110" style="background-color: #E6E6E6">
                                 <p:column style="width: 100%; margin-left: 5%;">
                                     <h:form>
@@ -88,7 +89,7 @@
                                                     <tr>
                                                         <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
                                                             text-align: left; background-color: #FFE6E6">
-                                                            <p:outputLabel> Laufzeit
+                                                            <p:outputLabel>Verbleibende Zeit
                                                             </p:outputLabel>
                                                         </td>
                                                         <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
@@ -181,7 +182,9 @@
                                     </h:form>
                                 </p:column> 
                             </p:panel>
+                            </p:commandLink>
                             <p:column style="width: 80%; margin-left: 5%">
+                                <p:commandLink action="#{dashboardUIController.goToRemotestart()}">
                                 <p:panel header="Maschine 2: EX200P" style="background-color: #E0F5FF:margin-left: 5%">
                                     <p:column style="width: 100%; margin-left: 10%;">
                                         <h:form>
@@ -200,7 +203,7 @@
                                                         <tr>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
                                                                 text-align: left; background-color: #FFE6E6">
-                                                                <p:outputLabel>Laufzeit
+                                                                <p:outputLabel>Verbleibende Zeit
                                                                 </p:outputLabel>
                                                             </td>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
@@ -293,10 +296,12 @@
                                         </h:form>
                                     </p:column> 
                                 </p:panel>
+                                </p:commandLink>
                             </p:column>
                         </p:panelGrid>
                         <p:panelGrid columns="2" style="width: 100%">
                             <p:column style="width: 80%">
+                                <p:commandLink action="#{dashboardUIController.goToRemotestart()}">
                                 <p:panel header="Maschine 3: WDA1101" style="background-color: #E0F5FF:margin-left: 5%">
                                     <p:column style="width: 100%; margin-left: 10%;">
                                         <h:form>
@@ -315,7 +320,7 @@
                                                         <tr>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
                                                                 text-align: left; background-color: #FFE6E6">
-                                                                <p:outputLabel>Laufzeit
+                                                                <p:outputLabel>Verbleibende Zeit
                                                                 </p:outputLabel>
                                                             </td>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
@@ -408,8 +413,10 @@
                                         </h:form>
                                     </p:column> 
                                 </p:panel>
+                                </p:commandLink>
                             </p:column>
                             <p:column style="width: 80%; margin-left: 40%; margin-top: 2%">
+                               <p:commandLink action="#{dashboardUIController.goToRemotestart()}">
                                 <p:panel header="Maschine 4: EDF800" style="background-color: #E0F5FF:margin-left: 5%">
                                     <p:column style="width: 100%; margin-left: 10%;">
                                         <h:form>
@@ -428,7 +435,7 @@
                                                         <tr>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
                                                                 text-align: left; background-color: #FFE6E6">
-                                                                <p:outputLabel>Laufzeit
+                                                                <p:outputLabel>Verbleibende Zeit
                                                                 </p:outputLabel>
                                                             </td>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
@@ -521,11 +528,13 @@
                                         </h:form>
                                     </p:column> 
                                 </p:panel>
+                               </p:commandLink>
                             </p:column>
                         </p:panelGrid>
                         <p:panelGrid columns="2" style="width: 100%">
                             <p:column style="width: 80%">
-                                <p:panel header="Maschine 3: KP/233" style="background-color: #E0F5FF:margin-left: 5%">
+                                <p:commandLink action="#{dashboardUIController.goToRemotestart()}">
+                                <p:panel header="Maschine 5: KP/233" style="background-color: #E0F5FF:margin-left: 5%">
                                     <p:column style="width: 100%; margin-left: 10%;">
                                         <h:form>
                                             <p:panelGrid columns="2" style="margin-right: 2.5%; background-color: #F2F2F2">
@@ -543,7 +552,7 @@
                                                         <tr>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
                                                                 text-align: left; background-color: #FFE6E6">
-                                                                <p:outputLabel>Laufzeit
+                                                                <p:outputLabel>Verbleibende Zeit
                                                                 </p:outputLabel>
                                                             </td>
                                                             <td style=" border: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
@@ -635,7 +644,9 @@
                                             </p:panelGrid>
                                         </h:form>
                                     </p:column> 
+                                    
                                 </p:panel>
+                                </p:commandLink>
                             </p:column>
                         </p:panelGrid>
                     </p:panel>
