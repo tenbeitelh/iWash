@@ -41,13 +41,13 @@ and open the template in the editor.
                 </p:panelGrid>
             </pm:header> 
                 <pm:content>
-                    <p:panel header="Maschine">
+                    <p:panel header="Maschine"  styleClass="panel" >
                         <p:selectOneMenu id="machine" value="#{settingsUIController.machineName}" style="width:150px">
                             <f:selectItems value="#{settingsUIController.machineMap}" />
-                            <p:ajax process="@this" listener="#{settingsUIController.onMachineChange()}" update="switch" />
+                            <p:ajax process="@this" listener="#{settingsUIController.onMachineChange()}" update="switch, mail, tel" />
                         </p:selectOneMenu>
                     </p:panel>
-                    <p:panel header="">
+                    <p:panel header=""  styleClass="panel" >
                         <p:panelGrid columns="2">
                             <p:column>
                                 <div class="panel panel-default">
@@ -67,7 +67,7 @@ and open the template in the editor.
                                     <p:column>
                                         <p:inputSwitch id="switch" value="#{settingsUIController.notification}"></p:inputSwitch>
                                     </p:column>
-                                    
+
                                     <p:column>
                                         <p:graphicImage value="/Images/mail.png"></p:graphicImage>
                                         <p:outputLabel id="mail" value="#{settingsUIController.geteMail()}"></p:outputLabel>
@@ -77,6 +77,36 @@ and open the template in the editor.
                                         <p:outputLabel id="tel" value="#{settingsUIController.telephone}"></p:outputLabel>
                                     </p:column>
                                 </p:panelGrid>
+                            </p:column>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Reinigugnsmittel" styleClass="panel">
+                        <p:panelGrid columns="2">
+                            <p:column>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel for="supplier" value="Lieferant:"></p:outputLabel>
+                                    <p:selectOneMenu id="supplier" value="#{settingsUIController.supplierName}" style="width:150px">
+                                        <f:selectItems value="#{settingsUIController.supplierMap}" />
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="good" value="Produkt"></p:outputLabel>
+                                    <p:selectOneMenu id="good" value="#{settingsUIController.good}" style="width: 150px">
+                                        <f:selectItems value="#{settingsUIController.goodsMap}"></f:selectItems>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="order" value="Automatisch bestellen"></p:outputLabel>
+                                    <p:selectBooleanCheckbox id="order" value="#{settingsUIController.order}">
+                                        <p:ajax listener="#{settingsUIController.onOrderChange()}" update="orderBtn"></p:ajax>
+                                    </p:selectBooleanCheckbox>
+                                    <p:column></p:column>
+                                    <p:column>
+                                        <p:outputPanel id="orderBtn">
+                                            <p:commandButton rendered="#{!settingsUIController.order}" value="Bestellen" ></p:commandButton>
+                                        </p:outputPanel>
+                                    </p:column>
+                                </p:panelGrid>
+                            </p:column>
+                            <p:column>
+                                <p:poll interval="3" update="stats" />
+                                <p:chart id="stats" type="line" model="#{chartView.lineModel2}" style="height:180px;"/>
                             </p:column>
                         </p:panelGrid>
                     </p:panel>
