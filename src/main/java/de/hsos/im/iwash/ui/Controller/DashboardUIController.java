@@ -9,50 +9,51 @@ import javax.inject.Named;
 import java.io.Serializable;
 import javax.enterprise.inject.Model;
 
-
 /**
  *
  * @author Ace
  */
 @Named(value = "dashboardUIController")
 @Model
-public class DashboardUIController implements Serializable{
+public class DashboardUIController implements Serializable {
 
     public DashboardUIController() {
     }
-     public String goToPerfectWash() {
+
+    public String goToPerfectWash() {
         return "perfect_wash.xhtml?faces-redirect=true";
-    } 
-     
-     public String goToOverview() {
-         System.out.println("gogogo");
+    }
+
+    public String goToOverview() {
+        System.out.println("gogogo");
         return "overview.xhtml?faces-redirect=true";
     }
-     
-      public String goToSteuerung() {
-         System.out.println("gogogo");
+
+    public String goToSteuerung() {
+        System.out.println("gogogo");
         return "select.xhtml?faces-redirect=true";
     }
-      
-       public String goToRemoteDesktop() {
-         System.out.println("gogogo");
+
+    public String goToRemoteDesktop() {
+        System.out.println("gogogo");
         return "remote_desktop.xhtml?faces-redirect=true";
     }
-       public String goToRemotestart() {
-         System.out.println("gogogo");
+
+    public String goToRemotestart() {
+        System.out.println("gogogo");
         return "startMschine.xhtml?faces-redirect=true";
     }
-    
-     public String goToSupport(){
-         return "support.xhtml?faces-redirect=true";
-     }
-     
-       public String goToIndex(){
-         System.out.println("check goToIndex");
-         return "index.xhtml?faces-redirect=true";
-     }
-      
-     public String goToSettings(){
-         return "settings.xhtml?faces-redirect=true";
-     }
+
+    public String goToSupport() {
+        return "support.xhtml?faces-redirect=true";
+    }
+
+    public String goToIndex() {
+        System.out.println("check goToIndex");
+        return "index.xhtml?faces-redirect=true";
+    }
+
+    public String goToSettings() {
+        return "settings.xhtml?faces-redirect=true";
+    }
 }

@@ -62,7 +62,7 @@
                         <p:panelGrid columns="2" style="width: 100%">
                             <p:column style="width: 100%; margin-left: 10%;">
                                 <h:form>
-                                    <p:commandLink action="#{dashboardUIController.goToOverview()}">
+                                    <p:commandLink action="overview.xhtml?faces-redirect=true">
                                         <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
                                     </p:commandLink>
                                 </h:form>
