@@ -219,9 +219,9 @@ public class SettingsUIController {
     private void setupSupplierMap() {
         this.supplierMap = new HashMap<>();
         this.supplierMap.put("Miele", "Miele");
-        this.supplierMap.put("Amazon", "Amazon");
-        this.supplierMap.put("Otto", "Otto");
-        this.supplierMap.put("Bosch", "Bosch");
+        this.supplierMap.put("mundizio", "mundizio");
+        this.supplierMap.put("wisch-star", "wisch-star");
+        this.supplierMap.put("reinigungsberater", "reinigungsberater");
     }
 
     private void setupGoodsMap() {
