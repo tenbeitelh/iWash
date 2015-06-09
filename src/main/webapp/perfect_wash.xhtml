@@ -43,6 +43,11 @@ and open the template in the editor.
                 <p:panel header="Konfiguration">
                     <p:panelGrid columns="2" layout="grid" style="margin-right: 25px;">
                         <p:panelGrid columns="2" layout="grid">
+                            <h:outputLabel for="modus" value="Ausgewählte Maschine"></h:outputLabel>
+                            <p:selectOneMenu id="machine" value="#{settingsUIController.machineName}" style="width:150px">
+                            <f:selectItems value="#{settingsUIController.machineMap}" />
+                            <p:ajax process="@this" listener="#{settingsUIController.onMachineChange()}"/>
+                        </p:selectOneMenu>
                             <h:outputLabel for="modus" value="Bevorzugter Washmodus:"></h:outputLabel>
                             <p:selectOneMenu id="modus" value="#{perfectWashUIController.modus}" style="width: 100px;">
                                 <f:selectItems value="#{perfectWashUIController.modi}" />
@@ -57,9 +62,14 @@ and open the template in the editor.
 
                             <h:outputLabel for="quantity" value="Wasch-Temperatur:"></h:outputLabel>
                             <p:inputText id="quantity" value="#{perfectWashUIController.quantity}"></p:inputText>
-
-                            <p:selectBooleanCheckbox id="usePerfectWash" value="#{perfectWashUIController.usePerfectWash}" style="height:40px" />
-                            <h:outputLabel for="usePerfectWash" value="Perfect Wash anwenden " />
+                            <p:panelGrid columns="2" layout="grid" style="margin-left: 5px;width: 100%" >
+                                <p:column>
+                                    <h:outputLabel for="usePerfectWash" value="Perfect Wash anwenden " style="margin-top: 10%"/>
+                                </p:column>
+                                <p:column>
+                                <p:selectBooleanCheckbox id="usePerfectWash" value="#{perfectWashUIController.usePerfectWash}" style="height:40px" />
+                                </p:column>
+                            </p:panelGrid>
                         </p:panelGrid>
                         <p:panelGrid columns="2" layout="grid" style="margin-left: 25px;">
                             <h:outputLabel for="pollutionVariety" value="Verschmutzungsart:"></h:outputLabel>
