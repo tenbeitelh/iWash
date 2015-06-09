@@ -204,9 +204,11 @@ public class SettingsUIController {
 
     private void createTestMachineDate() {
         this.settingsMap = new HashMap<>();
-        this.settingsMap.put("Maschine1", new MachineSettings("Machine1", true));
-        this.settingsMap.put("Maschine2", new MachineSettings("Machine2", false));
-        this.settingsMap.put("Maschine3", new MachineSettings("Machine3", true));
+        this.settingsMap.put("WDA110", new MachineSettings("WDA110", true));
+        this.settingsMap.put("EX200P", new MachineSettings("EX200P", true));
+        this.settingsMap.put("WDA1101", new MachineSettings("WDA1101", true));
+        this.settingsMap.put("EDF800", new MachineSettings("EDF800", false));
+        this.settingsMap.put("KP/233", new MachineSettings("KP/233", true));
     }
 
     private void initMachStringMap() {

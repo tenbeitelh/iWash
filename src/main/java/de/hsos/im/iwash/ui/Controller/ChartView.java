@@ -14,9 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import javax.enterprise.inject.Model;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import org.primefaces.model.chart.Axis;
@@ -56,7 +54,9 @@ public class ChartView implements Serializable {
     private boolean flagE = false;
     private String readyE;
     private boolean tmpA = false;
-    
+     private boolean tmpB = false;
+     private String currentSupplier;
+     private String currentSupply;
     ArrayList<ModelBean[]> liste=new ArrayList<ModelBean[]>();
 
     @Inject
@@ -79,8 +79,8 @@ public class ChartView implements Serializable {
         createBarModels();
         createPieModels();
         createBarModels();
-        createLineModels();
-    }
+        createLineModels();        
+        }
 
     public LineChartModel getLineModel2() {
         return lineModel2;
@@ -93,6 +93,26 @@ public class ChartView implements Serializable {
     public boolean isTmpA() {
         return tmpA;
     }
+
+    public boolean isTmpB() {
+        return tmpB;
+    }
+
+    public String getCurrentSupplier() {
+        return currentSupplier;
+    }
+
+    public void setCurrentSupplier(String currentSupplier) {
+        this.currentSupplier = currentSupplier;
+    }
+    
+    
+
+    public void setTmpB(boolean tmpB) {
+        this.tmpB = tmpB;
+    }
+    
+    
 
     public void setTmpA(boolean tmpA) {
         this.tmpA = tmpA;
@@ -224,7 +244,7 @@ public class ChartView implements Serializable {
         supplier.add("wisch-star");
         supplier.add("reinigungsberater");
         lineModel2 = initCategoryModel();
-        lineModel2.setTitle("Verkaufspreisentwicklung Reinigungsmittel " + supplier.get(c));
+        currentSupplier = supplier.get(c);
         lineModel2.setLegendPosition("e");
         lineModel2.setShowPointLabels(true);
         lineModel2.getAxes().put(AxisType.X, new CategoryAxis("2015"));
@@ -245,33 +265,26 @@ public class ChartView implements Serializable {
         int d = rand.nextInt(7) + 0;
 
         supplies = new ArrayList<>();
-        supplies.add("WA UP1 1501 L Kartusche UltraPhase 1, 1,5 l");
-        supplies.add("WA UP2 1501 L Kartusche UltraPhase 2, 1,5 l");
-        supplies.add("WA CP5 1503 L Kartusche UltraPhase 3, 8,5 l");
-        supplies.add("WA LP3 1504 L Kartusche UltraPhase 4, 5,5 l");
-        supplies.add("WA PP1 1588 L Kartusche UltraPhase 5, 2,5 l");
-        supplies.add("WA KP2 1587 L Kartusche UltraPhase 6, 3,5 l");
-        supplies.add("WA MP5 1593 L Kartusche MediumPhase 7, 7,5 l");
-        supplies.add("WA NP3 1564 L Kartusche MegaPhase 8, 8,5 l");
+        supplies.add("WA UP1 1501 L1, 1,5 l");
+        supplies.add("WA UP2 1501 L2, 1,5 l");
+        supplies.add("WA CP5 1503 L3, 8,5 l");
+        supplies.add("WA LP3 1504 L4, 5,5 l");
+        supplies.add("WA PP1 1588 L5, 2,5 l");
+        supplies.add("WA KP2 1587 L6, 3,5 l");
+        supplies.add("WA MP5 1593 L7, 7,5 l");
+        supplies.add("WA NP3 1564 L8, 8,5 l");
 
         ChartSeries boys = new ChartSeries();
         boys.setLabel(supplies.get(c));
+        currentSupply = supplies.get(c);
+        
         boys.set("JAN", n - rand.nextInt(1) + 0);
         boys.set("FEB", n - rand.nextInt(3) + 1);
         boys.set("MÄR", n - rand.nextInt(5) + 3);
         boys.set("APR", n - rand.nextInt(5) + 0);
         boys.set("MAI", n - rand.nextInt(5) + 8);
 
-        ChartSeries girls = new ChartSeries();
-        girls.setLabel(supplies.get(d));
-        girls.set("JAN", b - rand.nextInt(1) + 0);
-        girls.set("FEB", b - rand.nextInt(3) + 1);
-        girls.set("MÄR", b - rand.nextInt(5) + 3);
-        girls.set("APR", b - rand.nextInt(5) + 0);
-        girls.set("MAI", b - rand.nextInt(5) + 8);
-
         model.addSeries(boys);
-        model.addSeries(girls);
 
         return model;
     }
@@ -310,6 +323,16 @@ public class ChartView implements Serializable {
         this.readyA = readyA;
     }
 
+    public String getCurrentSupply() {
+        return currentSupply;
+    }
+
+    public void setCurrentSupply(String currentSupply) {
+        this.currentSupply = currentSupply;
+    }
+    
+    
+
     private PieChartModel createMaschineOnePieModel() {
 
         double laufzeit = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMaschineA()));
@@ -321,6 +344,7 @@ public class ChartView implements Serializable {
             flagA = true;
         }
         
+       
         Maschine1 = new PieChartModel();  
         Maschine1.set("Restwaschzeit", 100-laufzeit);
         Maschine1.set("Waschzeit", laufzeit);
@@ -420,6 +444,11 @@ public class ChartView implements Serializable {
         ChartSeries girls = new ChartSeries();
 
         double WDA110 = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMaschineA()));           
+        
+        if(WDA110 ==100)
+        {
+            tmpA = true;
+        }
         double  EX200P = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineB()));           
         double  WDA1101 = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineC()));           
         double  EDF800 = Double.parseDouble(String.format(Locale.ENGLISH, "%1.2f", model.getProgressMAschineD()));           
@@ -442,7 +471,6 @@ public class ChartView implements Serializable {
         horizontalBarModel.addSeries(boys);
         horizontalBarModel.addSeries(girls);
 
-        horizontalBarModel.setTitle("Laufzeit alle Maschinen");
         horizontalBarModel.setLegendPosition("s");
         horizontalBarModel.setStacked(true);
         Axis xAxis = horizontalBarModel.getAxis(AxisType.Y);

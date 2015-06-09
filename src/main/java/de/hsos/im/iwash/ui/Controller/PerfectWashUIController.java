@@ -111,13 +111,15 @@ public class PerfectWashUIController {
 
     public void createLastWashProcesses() {
         this.lastWashProcesses = new ArrayList<WashProcess>();
-        WashProcess temp = new WashProcess("WDA110", new Date(1999, 12, 10, 12, 12, 12), "1h", "Perfect Wash", 0.97);
+        WashProcess temp = new WashProcess("WDA110", new Date(1999, 12, 10, 12, 12, 12), "30sec", "Perfect Wash", 0.97);
         this.lastWashProcesses.add(temp);
-        temp = new WashProcess("EX200P", new Date(1999, 12, 10, 18, 12, 12), "3,5h", "Ultimate A", 0.90);
+        temp = new WashProcess("EX200P", new Date(1999, 12, 10, 18, 12, 12), "1min", "Ultimate A", 0.88);
         this.lastWashProcesses.add(temp);
-        temp = new WashProcess("WDA1101", new Date(1999, 12, 10, 18, 12, 12), "2,5h", "Super B", 0.90);
+        temp = new WashProcess("WDA1101", new Date(1999, 12, 10, 18, 12, 12), "8min", "Super B", 0.90);
         this.lastWashProcesses.add(temp);
-        temp = new WashProcess("EDF800", new Date(1999, 12, 10, 18, 12, 12), "0,5h", "Ultimate A", 0.90);
+        temp = new WashProcess("EDF800", new Date(1999, 12, 10, 18, 12, 12), "8min", "Ultimate A", 0.87);
+        this.lastWashProcesses.add(temp);
+        temp = new WashProcess("KP/233", new Date(1999, 12, 10, 18, 12, 12), "20min", "Ultimate A", 0.87);
         this.lastWashProcesses.add(temp);
     }
 
