@@ -8,6 +8,8 @@ package de.hsos.im.iwash.ui.Controller;
 import javax.inject.Named;
 import java.io.Serializable;
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -44,6 +46,7 @@ public class DashboardUIController implements Serializable {
         return "startMschine.xhtml?faces-redirect=true";
     }
 
+
     public String goToSupport() {
         return "support.xhtml?faces-redirect=true";
     }
@@ -60,4 +63,15 @@ public class DashboardUIController implements Serializable {
     public String goToARView(){
         return "AR_mediaStream.html";
     }
+    
+     
+     
+     public void fatal() {
+        FacesContext context = FacesContext.getCurrentInstance();
+         
+        context.addMessage(null, new FacesMessage("Successful",  "Your message: " + "") );
+        context.addMessage(null, new FacesMessage("Second Message", "Additional Message Detail"));
+   }
+
 }
+

@@ -27,9 +27,14 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script>
-            function foo() {
-                alert("check");
-            }
+
+            var doStuff = function () {
+                            if (#{chartView.flagA} === true)
+                {
+                    alert("b");
+                }
+                setInterval(doStuff, 1000);
+
         </script>
 
         <style>
@@ -40,7 +45,7 @@
             }
         </style>
     </h:head>
-    <h:body>
+    <h:body onload="foo()">
         <pm:page id="main" style="background-image:url('../Images/app_background.jpg')">
             <f:facet name="preinit">
                 <link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/miele.css" />
@@ -60,68 +65,141 @@
 
                     <p:panel header="Dashboard" id="votes">
                         <p:panelGrid columns="2" style="width: 100%">
-                            <p:column style="width: 100%; margin-left: 10%;">
-                                <h:form>
-                                    <p:commandLink action="overview.xhtml?faces-redirect=true">
-                                        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
-                                    </p:commandLink>
-                                </h:form>
+                            <p:commandLink action="#{dashboardUIController.goToOverview()}">
+                                <p:panel style="width: 95%; margin-left: 4%" header="Laufzeit aller Maschinen">
+                                    <p:column style="width: 100%; margin-left: 10%;">  
 
-                            </p:column> 
+                                        <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:180px"/>
+                                    </p:column>
+                                </p:panel>
+                            </p:commandLink>
                             <p:column style="width: 80%">
-                                <div style="width: 90%; margin: 0 auto;">
-                                    <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}"  tableStyleClass="table table-striped">
-                                        <p:column headerText="Maschinen Nr.:">
-                                            <h:outputText value="#{process.machineId}"></h:outputText>
-                                        </p:column>
-                                        <p:column headerText="Startzeit">
-                                            <h:outputText value="#{process.startTime.hours}"></h:outputText>
-                                            :
-                                            <h:outputText value="#{process.startTime.minutes}"></h:outputText>
-                                        </p:column>
-                                        <p:column headerText="Laufzeit">
-                                            <h:outputText value="#{process.duration}"></h:outputText>
-                                        </p:column>    
-                                        <p:column headerText="Washprogramm">
-                                            <h:outputText value="#{process.washProgram}"></h:outputText>
-                                        </p:column>
-                                        <p:column headerText="Reinigungsqualität">
-                                            <h:outputText value="#{process.quality * 100}%"></h:outputText>
-                                        </p:column>
-                                    </p:dataTable>
-                                </div>
+                                <p:panel style="width: 95%; margin-left: 0.5%;" header="Laufzeit aller Maschinen">
+                                    <div style="width: 90%; margin: 0 auto;height: 180px; overflow: auto">
+                                        <p:dataTable var="process" value="#{perfectWashUIController.lastWashProcesses}"  rowKey="#{process.machineId}"  tableStyleClass="table table-striped">
+                                            <p:column headerText="Maschinen Nr.:">
+                                                <h:outputText value="#{process.machineId}"></h:outputText>
+                                            </p:column>
+                                            <p:column headerText="Startzeit">
+                                                <h:outputText value="#{process.startTime.hours}"></h:outputText>
+                                                :
+                                                <h:outputText value="#{process.startTime.minutes}"></h:outputText>
+                                            </p:column>
+                                            <p:column headerText="Laufzeit">
+                                                <h:outputText value="#{process.duration}"></h:outputText>
+                                            </p:column>    
+                                            <p:column headerText="Washprogramm">
+                                                <h:outputText value="#{process.washProgram}"></h:outputText>
+                                            </p:column>
+                                            <p:column headerText="Reinigungsqualität">
+                                                <h:outputText value="#{process.quality * 100}%"></h:outputText>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
+                                </p:panel>
 
                             </p:column>
 
                         </p:panelGrid>
+
                         <p:panelGrid columns="2" style="width: 100%">
-                            <p:column style="width: 80%"><p:chart type="bar" model="#{chartView.barModel}" style="height:160px"/></p:column>
+
                             <p:column style="width: 80%; margin-left: 40%; margin-top: 2%">
-                                <p:chart type="line" model="#{chartView.lineModel2}" style="height:180px;"/>
+                                <p:panel style="width: 95%; margin-left: 4%; margin-top: 0.5%" header="Preis Reinigungsmittel #{chartView.currentSupply} bei #{chartView.currentSupplier}">
+
+                                    <p:chart type="line" model="#{chartView.lineModel2}" style="height:180px;"/>
+                                </p:panel></p:column>
+                            <p:column>
+
+                                <p:panel style="width: 95%; margin-left: 0.5%; margin-top: 0.5%; height: 180px" header="Systemnachrichten 9.06.2015">
+                                    <div style="overflow:  auto; width:  100%; height: 180px">
+                                        <table id="t01" style="width: 100%; margin-left: 1%">
+                                            <tr>
+                                                <th style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse; padding: 5px;
+                                                    text-align: left;">Nachrichtentyp</th>
+                                                <th style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: left;">Nachricht</th>		
+                                            </tr>
+                                            <tr>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: center;background-color: white;color: red">
+                                                    <p:outputLabel>System
+                                                    </p:outputLabel>
+                                                </td>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: left; background-color: white; color: red">
+                                                    <p:outputLabel>WDA1101 meldet: Fehler - Code 3
+                                                    </p:outputLabel>
+                                                </td>		
+                                            </tr>
+                                            <tr>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: center;background-color: white;color: green">
+                                                    <p:outputLabel>Status
+                                                    </p:outputLabel></td>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: left;background-color: white;color: green">
+                                                    <p:outputLabel>WDA1101 meldet: Programm Perfect Wash abgeschlossen!
+                                                    </p:outputLabel>
+
+                                                </td>		
+                                            </tr>
+                                            <tr>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: center;background-color: white;color: orange">
+                                                    <p:outputLabel>Support
+                                                    </p:outputLabel></td>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: left;background-color: white;color: orange">
+                                                    <p:outputLabel>Server meldet: Preis für Waschmittel WA UP1 1501 bei Miele besonders güstig!
+                                                    </p:outputLabel>
+
+                                                </td>			
+                                            </tr>
+                                            <tr>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: center;background-color: white;color: green">
+                                                    <p:outputLabel rendered="#{chartView.tmpA}">Status
+                                                    </p:outputLabel></td>
+                                                <td style=" border-bottom: 1px solid #FFE6E6;border-collapse: collapse;padding: 5px;
+                                                    text-align: left;background-color: white;color: green">
+                                                    <p:outputLabel rendered="#{chartView.tmpA}">WDA110 meldet: Programm Perfect Wash abgeschlossen!
+                                                    </p:outputLabel>
+
+                                                </td>			
+                                            </tr>
+
+
+                                        </table>
+                                    </div>
+                                </p:panel>
+
                             </p:column>
                         </p:panelGrid>
                     </p:panel>
                 </h:form>
-                <p:panel style="margin-top: 1%; background-color: transparent !important;">
-                    <h:form>
-                        <p:panelGrid columns="2" style="width: 100%; margin-top: -1.5%; background-color: transparent !important;">
-                            <p:column style="width: 85%">
-                                <p:commandButton value="Perfect Wash" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%;" action="#{dashboardUIController.goToPerfectWash()}" ajax="false"/>
-                            </p:column>
-                            <p:column style="width: 85%; margin-left: 5%">
-                                <p:commandButton value="Support" style="height: 105px; margin-left: 1%; width: 99%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSupport()}" ajax="false"/>
-                            </p:column>
-                        </p:panelGrid>
-                        <p:panelGrid columns="2" style="width: 100%; margin-top: -2%; background-color: transparent !important;">
-                            <p:column style="width: 85%; background-color: transparent !important;">
-                                <p:commandButton value="Einstellungen" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSettings()}"/>
-                            </p:column>
-                            <p:column style="width: 85%; background-color: transparent !important;; ">
-                                <p:commandButton value="Gerätesteuerung" style="height: 105px ; width: 99%;margin-left: 1%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSteuerung()}"/>
-                            </p:column>
-                        </p:panelGrid>
-                    </h:form>
-                </p:panel>
+                <h:form>
+                    <p:panelGrid columns="2" style="width: 100%; margin-top: 1%; background-color: transparent !important;">
+                        <p:column style="width: 85%">
+                            <p:commandButton value="Perfect Wash" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%;" action="#{dashboardUIController.goToPerfectWash()}" ajax="false"/>
+                        </p:column>
+                        <p:column style="width: 85%; margin-left: 5%">
+                            <p:commandButton value="Support" style="height: 105px; margin-left: 1%; width: 99%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSupport()}" ajax="false"/>
+                        </p:column>
+                    </p:panelGrid>
+                    <p:panelGrid columns="2" style="width: 100%; margin-top: -2%; background-color: transparent !important;">
+                        <p:column style="width: 85%; background-color: transparent !important;">
+                            <p:commandButton value="Einstellungen" style="height: 105px ; width: 99%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSettings()}"/>
+                        </p:column>
+                        <p:column style="width: 85%; background-color: transparent !important;; ">
+                            <p:commandButton value="Gerätesteuerung" style="height: 105px ; width: 99%;margin-left: 1%; background-color: red; color: white; font-size: 200%" action="#{dashboardUIController.goToSteuerung()}"/>
+                        </p:column>
+                    </p:panelGrid>
+
+
+                </h:form>
+
+
             </pm:content>
         </pm:page>
     </h:body>
