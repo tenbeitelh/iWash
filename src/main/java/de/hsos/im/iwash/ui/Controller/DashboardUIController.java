@@ -56,4 +56,8 @@ public class DashboardUIController implements Serializable {
     public String goToSettings() {
         return "settings.xhtml?faces-redirect=true";
     }
+    
+    public String goToARView(){
+        return "AR_mediaStream.html";
+    }
 }

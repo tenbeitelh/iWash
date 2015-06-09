@@ -31,39 +31,39 @@ and open the template in the editor.
     <h:body>
         <h:form>
             <pm:page id="second" style="background-image:url('../Images/app_background.jpg')">
-                 <pm:header> 
-               <p:panelGrid columns="2" style="width: 100%">
-                      
-                   <p:commandLink action="#{dashboardUIController.goToIndex()}">
-            <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
-                   </p:commandLink>
-                    <h:outputText value="iWash" styleClass="header-text"/>
-                </p:panelGrid>
-            </pm:header> 
+                <pm:header> 
+                    <p:panelGrid columns="2" style="width: 100%">
+
+                        <p:commandLink action="#{dashboardUIController.goToIndex()}">
+                            <p:graphicImage value="/Images/miele_logo.jpg" title="COMPANY CREATION" styleClass="header-img"/>            
+                        </p:commandLink>
+                        <h:outputText value="iWash" styleClass="header-text"/>
+                    </p:panelGrid>
+                </pm:header> 
                 <pm:content>
-                    
+
                     <p:panel header="Auswahl der Gerätesteuerung">
                         <p:panelGrid columns="2">
                             <p:panel header="Gerätesterung per Fernbedinung">
                                 <p:column><p:commandLink action="#{dashboardUIController.goToRemoteDesktop()}">
-                                    <p:graphicImage value="/Images/url.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 50%; margin-left: 25%"/>            
-                   </p:commandLink> 
-                            </p:column>
+                                        <p:graphicImage value="/Images/url.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 50%; margin-left: 25%"/>            
+                                    </p:commandLink> 
+                                </p:column>
                             </p:panel>
                             <p:panel header="Gerätesterung per Augmented Reality" style="margin-left: 2%; background-color: black">
                                 <p:column>
-                                    <a href="http://localhost:8080/iWash/faces/AR_mediaStream.html">
-    <p:graphicImage value="/Images/Augmented-Reality.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 60%; margin-left: 25%"/>            
-                   
-        </a>
-                                    
-                            </p:column>
+                                    <p:commandLink action="#{dashboardUIController.goToARView()}">
+                                        <p:graphicImage value="/Images/Augmented-Reality.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 60%; margin-left: 25%"/>            
+
+                                    </p:commandLink>
+
+                                </p:column>
                             </p:panel>
                         </p:panelGrid>
                     </p:panel>
-                    
+
                 </pm:content>
-                </pm:page>
+            </pm:page>
         </h:form>
     </h:body>
 </html>
