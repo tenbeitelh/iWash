@@ -40,7 +40,7 @@ and open the template in the editor.
                 </p:panelGrid>
             </pm:header> 
             <pm:content>
-                <p:panel header="Konfiguration">
+                <p:panel header="Konfiguration WDA110">
                     <p:panelGrid columns="2" layout="grid" style="margin-right: 25px;">
                         <p:panelGrid columns="2" layout="grid">
                             <h:outputLabel for="modus" value="Bevorzugter Washmodus:"></h:outputLabel>
@@ -58,8 +58,14 @@ and open the template in the editor.
                             <h:outputLabel for="quantity" value="Wasch-Temperatur:"></h:outputLabel>
                             <p:inputText id="quantity" value="#{perfectWashUIController.quantity}"></p:inputText>
 
-                            <p:selectBooleanCheckbox id="usePerfectWash" value="#{perfectWashUIController.usePerfectWash}" style="height:40px" />
-                            <h:outputLabel for="usePerfectWash" value="Perfect Wash anwenden " />
+                            <p:panelGrid columns="2" layout="grid" style="margin-left: 5px;width: 100%" >
+                                <p:column>
+                                    <h:outputLabel for="usePerfectWash" value="Perfect Wash anwenden " style="margin-top: 10%"/>
+                                </p:column>
+                                <p:column>
+                                <p:selectBooleanCheckbox id="usePerfectWash" value="#{perfectWashUIController.usePerfectWash}" style="height:40px" />
+                                </p:column>
+                            </p:panelGrid>
                         </p:panelGrid>
                         <p:panelGrid columns="2" layout="grid" style="margin-left: 25px;">
                             <h:outputLabel for="pollutionVariety" value="Verschmutzungsart:"></h:outputLabel>
@@ -83,6 +89,11 @@ and open the template in the editor.
                             
                         </p:panelGrid>
                     </p:panelGrid>
+                </p:panel>
+                <p:panel header="Steuerung" styleClass="panel">
+                    
+                    <p:graphicImage value="/remote.png" title="COMPANY CREATION" styleClass="header-img" style="margin-left: 30%; height: 25%; width: 40%"/>            
+                    
                 </p:panel>
 
                 

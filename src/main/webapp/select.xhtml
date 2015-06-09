@@ -43,22 +43,20 @@ and open the template in the editor.
                 <pm:content>
 
                     <p:panel header="Auswahl der Gerätesteuerung">
-                        <p:panelGrid columns="2">
-                            <p:panel header="Gerätesterung per Fernbedinung">
-                                <p:column><p:commandLink action="#{dashboardUIController.goToRemoteDesktop()}">
+                        <p:panelGrid columns="2"><p:commandLink action="#{dashboardUIController.goToRemoteDesktop()}">
+                                <p:panel header="Gerätesterung per Fernbedinung">
+                                <p:column>
                                         <p:graphicImage value="/Images/url.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 50%; margin-left: 25%"/>            
-                                    </p:commandLink> 
                                 </p:column>
-                            </p:panel>
+                            </p:panel></p:commandLink> 
+                            <p:commandLink action="AR_mediaStream.html?faces-redirect=true">
                             <p:panel header="Gerätesterung per Augmented Reality" style="margin-left: 2%; background-color: black">
                                 <p:column>
-                                    <p:commandLink action="AR_mediaStream.html?faces-redirect=true">
-                                        <p:graphicImage value="/Images/Augmented-Reality.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 60%; margin-left: 25%"/>            
-
-                                    </p:commandLink>
-
+                                        <p:graphicImage value="/Images/Augmented-Reality.jpg" title="COMPANY CREATION" styleClass="header-img" style="width: 50%; height: 65%; margin-left: 25%"/>              
                                 </p:column>
                             </p:panel>
+                            </p:commandLink>
+              
                         </p:panelGrid>
                     </p:panel>
 
