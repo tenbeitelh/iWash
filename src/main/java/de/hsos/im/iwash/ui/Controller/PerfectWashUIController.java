@@ -64,11 +64,14 @@ public class PerfectWashUIController {
         startTime = new Date();
         
         modi = new HashMap<String, String>();
-        modi.put("TestModus", "TestModus");
-        modi.put("Standard Modus", "Standard Modus");
+        modi.put("StandartA", "StandartA");
+        modi.put("Ultimate", "Ultimate");
+        modi.put("Clean", "Clean");
+        modi.put("UltraWash", "UltraWash");
 
         pollutionVarieties = new HashMap<String, String>();
         pollutionVarieties.put("anorganisch", "anorganisch");
+        pollutionVarieties.put("organisch", "organisch");
 
         pollutionDegrees = new HashMap<String, String>();
         pollutionDegrees.put("Stark", "Stark");
